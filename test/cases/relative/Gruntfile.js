@@ -18,11 +18,11 @@ module.exports = function(grunt) {
       dist: ['dist']
     },
 
-    'spm-transport': config.transport(grunt, pkg, {}),
-    'spm-concat': config.concat(grunt, pkg, {}),
-    'spm-beautify': config.beautify(grunt, pkg, {}),
-    'spm-css-minify': config.cssminify(grunt, pkg, {}),
-    'spm-js-minify': config.jsminify(grunt, pkg, {})
+    'spm-transport': config.transport(),
+    'spm-concat': config.concat({output: pkg.spm.output}),
+    'spm-beautify': config.beautify(),
+    'spm-css-minify': config.cssminify(),
+    'spm-js-minify': config.jsminify()
   });
 
   grunt.loadNpmTasks('grunt-spm-build');
