@@ -8,6 +8,7 @@
 
 var fs = require('fs');
 var path = require('path');
+var util = require('util');
 var ast = require('cmd-util').ast;
 var iduri = require('cmd-util').iduri;
 
