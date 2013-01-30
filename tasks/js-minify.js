@@ -6,34 +6,41 @@
  * Licensed under the MIT license.
  */
 
-
+var ast = require('cmd-util').ast;
 var path = require('path');
-var cleancss = require('clean-css');
 
 
 module.exports = function(grunt) {
 
-  grunt.registerMultiTask('spm-css-minify', 'Minify CSS.', function() {
+  grunt.registerMultiTask('spm-js-minify', 'Minify JavaScript.', function() {
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
       suffix: '',
       src: 'tmp-concat',
       dest: 'dist',
-      cleancss: {}
+      uglify: {}
     });
 
-    var fname, destfile, data;
+    var fname, destfile;
     this.filesSrc.forEach(function(fpath) {
-      if (!/\.css$/.test(fpath)) {
-        grunt.log.warn(fpath + ' is not css.');
+      if (!/\.js/.test(fpath)) {
+        grunt.log.warn(fpath + ' is not js.');
         return;
       }
       fname = fpath.replace(options.src, '').replace(/^\//, '');
       destfile = path.join(options.dest, fname);
-      destfile = destfile.replace(/\.css$/, options.suffix + '.css');
+      destfile = destfile.replace(/\.js$/, options.suffix + '.js');
 
       data = grunt.file.read(fpath);
-      data = cleancss.process(data, options.cleancss);
+      if (options.suffix) {
+        data = ast.modify(data, function(v) {
+          if (/\.js$/.test(v)) {
+            return v.replace(/\.js$/, options.suffix + '.js');
+          }
+          return v + options.suffix;
+        });
+      }
+      data = ast.getAst(data).print_to_string(options.uglify);
       grunt.file.write(destfile, data);
     });
 

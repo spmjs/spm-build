@@ -111,7 +111,18 @@ module.exports = function(grunt) {
         },
         src: 'tmp-concat/multi/**/*.css'
       }
+    },
+
+    'spm-js-minify': {
+      relative: {
+        options: {
+          src: 'tmp-concat/relative',
+          dest: 'tmp-dist/relative'
+        },
+        src: 'tmp-concat/relative/**/*.js'
+      }
     }
+
   });
 
   // Actually load this plugin's task(s).
