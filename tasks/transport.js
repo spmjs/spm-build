@@ -27,10 +27,18 @@ module.exports = function(grunt) {
       options.pkg = grunt.file.readJSON(options.pkg);
     }
 
+    if (!options.format) {
+      if (options.pkg.spm && options.pkg.spm.format) {
+        options.format = options.pkg.spm.format;
+      } else if (options.pkg.format) {
+        options.format = pkg.format;
+      }
+    }
+
     var id, fname, destfile, data;
     this.filesSrc.forEach(function(fpath) {
       fname = fpath.replace(options.src, '').replace(/^\//, '');
-      id = iduri.idFromPackage(options.pkg, fname);
+      id = iduri.idFromPackage(options.pkg, fname, options.format);
 
       destfile = path.join(options.dest, fname);
       if (!/\.js$/.test(fname)) {
@@ -72,7 +80,7 @@ module.exports = function(grunt) {
       grunt.log.verbose.writeln(fpath + ' depends on: ' + deps);
     }
 
-    var id = iduri.idFromPackage(options.pkg, fname);
+    var id = iduri.idFromPackage(options.pkg, fname, options.format);
     data = ast.modify(astCache, {
       id: id,
       dependencies: deps,
