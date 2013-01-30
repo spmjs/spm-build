@@ -1,0 +1,10 @@
+{
+  "root": "test",
+  "name": "relative",
+  "version": "0.1.0",
+  "spm": {
+    "output": {
+      "module.js": "."
+    }
+  }
+}

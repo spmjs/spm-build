@@ -29,11 +29,15 @@ module.exports = function(grunt) {
     'spm-transport': {
       options: {
         paths: ["sea-modules"],
-        src: 'test/fixtures',
-        dest: 'tmp'
+        dest: 'tmp-transport'
       },
-      jsfiles: ['test/fixtures/*.js'],
-      cssfiles: ['test/fixtures/*.css']
+      relative: {
+        options: {
+          pkg: "test/cases/relative/package.json",
+          src: "test/cases/relative/src"
+        },
+        src: ["test/cases/relative/src/*.js"]
+      }
     },
 
     // Configuration to be run (and then tested).
