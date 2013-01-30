@@ -20,6 +20,12 @@ module.exports = function(grunt) {
       },
     },
 
+    clean: {
+      transport: ['tmp-transport'],
+      concat: ['tmp-concat'],
+      minify: ['tmp-dist']
+    },
+
     // Before generating any new files, remove any previously-created files.
     'spm-transport': {
       options: {
@@ -130,12 +136,16 @@ module.exports = function(grunt) {
 
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-clean');
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
   grunt.registerTask(
     'test',
-    ['spm-transport', 'spm-concat', 'spm-beautify']
+    [
+      'spm-transport', 'spm-concat', 'spm-beautify',
+      'spm-css-minify', 'spm-js-minify'
+    ]
   );
 
   // By default, lint and run all tests.

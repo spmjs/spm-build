@@ -2,13 +2,15 @@
 
 > grunt tasks for spm build.
 
+
 ## Getting Started
-_If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide._
+
+> If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide.
 
 From the same directory as your project's [Gruntfile][Getting Started] and [package.json][], install this plugin with the following command:
 
-```bash
-npm install grunt-spm-build --save-dev
+```
+$ npm install grunt-spm-build --save-dev
 ```
 
 Once that's done, add this line to your project's Gruntfile:
@@ -23,14 +25,21 @@ If the plugin has been installed correctly, running `grunt --help` at the comman
 [Getting Started]: https://github.com/gruntjs/grunt/blob/devel/docs/getting_started.md
 [package.json]: https://npmjs.org/doc/json.html
 
-## The "spm_build" task
+## The tasks
 
-### Overview
-In your project's Gruntfile, add a section named `spm_build` to the data object passed into `grunt.initConfig()`.
+- spm-transport
+- spm-concat
+- spm-beautify
+- spm-css-minify
+- spm-js-minify
+
+### spm-transport
+
+In your project's Gruntfile, add a section named `spm-transport` to the data object passed into `grunt.initConfig()`.
 
 ```js
 grunt.initConfig({
-  spm_build: {
+  'spm-transport': {
     options: {
       // Task-specific options go here.
     },
@@ -41,55 +50,13 @@ grunt.initConfig({
 })
 ```
 
-### Options
+### spm-concat
 
-#### options.separator
-Type: `String`
-Default value: `',  '`
 
-A string value that is used to do something with whatever.
+### spm-beautify
 
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
 
-A string value that is used to do something else with whatever else.
+### spm-css-minify
 
-### Usage Examples
 
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
-
-```js
-grunt.initConfig({
-  spm_build: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-})
-```
-
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
-```js
-grunt.initConfig({
-  spm_build: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-})
-```
-
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][].
-
-## Release History
-_(Nothing yet)_
+### spm-js-minify
