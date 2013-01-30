@@ -28,11 +28,11 @@ If the plugin has been installed correctly, running `grunt --help` at the comman
 
 ## The tasks
 
-- spm-transport
-- spm-concat
-- spm-beautify
-- spm-css-minify
-- spm-js-minify
+- spm-transport: transport js, css, tpl to cmd (with id and dependencies).
+- spm-concat: concat files into one file.
+- spm-beautify: save a pretty js or css source file.
+- spm-css-minify: minify css files via clean-css.
+- spm-js-minify: minify js files via uglify-js.
 
 ### spm-transport
 
