@@ -6,7 +6,6 @@
  * Licensed under the MIT license.
  */
 
-var fs = require('fs');
 var path = require('path');
 var util = require('util');
 var ast = require('cmd-util').ast;
@@ -94,7 +93,7 @@ module.exports = function(grunt) {
     var fpath;
     options.paths.some(function(base) {
       var filepath = path.join(base, file);
-      if (fs.existsSync(filepath)) {
+      if (grunt.file.exists(filepath)) {
         fpath = filepath;
         return true;
       }
@@ -130,9 +129,9 @@ module.exports = function(grunt) {
     var data = grunt.file.read(fpath);
     var parsed = ast.parseFirst(data);
     parsed.dependencies.forEach(function(id) {
+      deps.push(id);
       if (id.charAt(0) === '.') {
         if (/\.js$/.test(iduri.appendext(id))) {
-          deps.push(id);
           deps = grunt.util._.union(deps, relativeDependencies(id, options, fpath));
         }
       } else {

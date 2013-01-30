@@ -6,18 +6,25 @@
  * Licensed under the MIT license.
  */
 
+var ast = require('cmd-util').ast;
+var iduri = require('cmd-util').iduri;
 var path = require('path');
 
 
 module.exports = function(grunt) {
 
-  grunt.registerMultiTask('spm-concat', 'Concat module to one file.', function() {
+  grunt.registerMultiTask('spm-concat', 'Concat modules to one file.', function() {
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
       paths: ['sea-modules'],
+      pkg: 'package.json',
       type: 'list',
       dest: 'tmp-concat'
     });
+
+    if (grunt.util._.isString(options.pkg)) {
+      options.pkg = grunt.file.readJSON(options.pkg);
+    }
 
     // Iterate over all specified file groups.
     this.files.forEach(function(fileObj) {
@@ -26,20 +33,19 @@ module.exports = function(grunt) {
       var files = grunt.file.expand({nonull: true}, fileObj.src);
 
       var data;
-      if (options.type === 'relative') {
 
-      } else if (options.type === 'all') {
+      // Concat specified files.
+      var data = files.map(function(filepath) {
+        // Warn if a source file/pattern was invalid.
+        if (!grunt.file.exists(filepath)) {
+          grunt.log.error('Source file "' + filepath + '" not found.');
+          return '';
+        }
+        return grunt.file.read(filepath);
+      }).join('\n\n');
 
-      } else {
-        // Concat specified files.
-        data = files.map(function(filepath) {
-          // Warn if a source file/pattern was invalid.
-          if (!grunt.file.exists(filepath)) {
-            grunt.log.error('Source file "' + filepath + '" not found.');
-            return '';
-          }
-          return grunt.file.read(filepath);
-        }).join('\n\n');
+      if ((options.type === 'relative' || options.type === 'all') && files.length === 1) {
+        data = concat(data, files[0], options);
       }
 
       // Write the destination file.
@@ -50,4 +56,41 @@ module.exports = function(grunt) {
     });
   });
 
+  function concat(data, fpath, options) {
+    if (!/\.js$/.test(fpath)) return data;
+
+    var meta = ast.parseFirst(data), filepath;
+
+    var rv = meta.dependencies.map(function(id) {
+      if (id.charAt(0) === '.') {
+
+        filepath = path.join(path.dirname(fpath), iduri.appendext(id));
+        if (!grunt.file.exists(filepath)) {
+          grunt.log.error('Source file "' + filepath + '" not found.');
+          return '';
+        }
+        return grunt.file.read(filepath);
+
+      } else if (options.type === 'all') {
+
+        id = iduri.parseAlias(options.pkg, id)
+        id = iduri.appendext(id);
+        var ret = '';
+
+        options.paths.some(function(base) {
+          filepath = path.join(base, id);
+          if (grunt.file.exists(filepath)) {
+            ret = grunt.file.read(filepath);
+            return true;
+          } else {
+            grunt.log.warn("can't find module " + id);
+          }
+        });
+        return ret;
+
+      }
+    }).join('\n\n');
+
+    return data + '\n\n' + rv;
+  }
 };

@@ -58,6 +58,7 @@ module.exports = function(grunt) {
 
       relative: {
         options: {
+          pkg: 'test/cases/relative/package.json',
           type: 'relative',
           dest: 'tmp-concat/relative'
         },
@@ -69,6 +70,7 @@ module.exports = function(grunt) {
 
       alias: {
         options: {
+          pkg: 'test/cases/alias/package.json',
           type: 'all',
           dest: 'tmp-concat/alias'
         },
