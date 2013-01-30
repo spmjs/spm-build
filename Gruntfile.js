@@ -91,6 +91,16 @@ module.exports = function(grunt) {
           'module.css': 'tmp-transport/multi/module.css'
         }
       }
+    },
+
+    'spm-beautify': {
+      multi: {
+        options: {
+          src: 'tmp-concat/multi',
+          dest: 'tmp-dist/multi'
+        },
+        src: 'tmp-concat/multi/**/*'
+      }
     }
   });
 
