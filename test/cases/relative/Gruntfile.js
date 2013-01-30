@@ -8,7 +8,9 @@
 
 module.exports = function(grunt) {
 
-  // Project configuration.
+  var config = require('grunt-spm-build');
+  var pkg = grunt.file.readJSON('package.json');
+
   grunt.initConfig({
     clean: {
       transport: ['tmp-transport'],
@@ -16,63 +18,13 @@ module.exports = function(grunt) {
       dist: ['dist']
     },
 
-    // Before generating any new files, remove any previously-created files.
-    'spm-transport': {
-      all: {
-        options: {
-          src: 'src',
-          dest: 'tmp-transport'
-        },
-        src: ["src/**/*"]
-      }
-    },
-
-    'spm-concat': {
-      all: {
-        options: {
-          type: 'relative',
-          dest: 'tmp-concat'
-        },
-
-        files: {
-          'module.js': 'tmp-transport/module.js'
-        }
-      }
-    },
-
-    'spm-beautify': {
-      all: {
-        options: {
-          src: 'tmp-concat',
-          dest: 'dist'
-        },
-        src: 'tmp-concat/**/*'
-      }
-    },
-
-    'spm-css-minify': {
-      all: {
-        options: {
-          src: 'tmp-concat',
-          dest: 'dist'
-        },
-        src: 'tmp-concat/**/*.css'
-      }
-    },
-
-    'spm-js-minify': {
-      all: {
-        options: {
-          src: 'tmp-concat',
-          dest: 'dist'
-        },
-        src: 'tmp-concat/**/*.js'
-      }
-    }
-
+    'spm-transport': config.transport(grunt, pkg, {}),
+    'spm-concat': config.concat(grunt, pkg, {}),
+    'spm-beautify': config.beautify(grunt, pkg, {}),
+    'spm-css-minify': config.cssminify(grunt, pkg, {}),
+    'spm-js-minify': config.jsminify(grunt, pkg, {})
   });
 
-  // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-spm-build');
   grunt.loadNpmTasks('grunt-contrib-clean');
 
@@ -86,6 +38,5 @@ module.exports = function(grunt) {
     ]
   );
 
-  // By default, lint and run all tests.
   grunt.registerTask('default', ['clean']);
 };
