@@ -7,7 +7,6 @@
  */
 
 var ast = require('cmd-util').ast;
-var iduri = require('cmd-util').iduri;
 var path = require('path');
 
 

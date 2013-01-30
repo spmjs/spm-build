@@ -10,6 +10,7 @@ var path = require('path');
 var util = require('util');
 var ast = require('cmd-util').ast;
 var iduri = require('cmd-util').iduri;
+var cleancss = require('clean-css');
 
 module.exports = function(grunt) {
 
@@ -163,15 +164,18 @@ function css2js(code, id) {
     "importStyle('%s')",
     '});'
   ].join('\n');
-  // TODO minifier code
+  code = cleancss.process(code, {
+    keepSpecialComments: 0,
+    removeEmpty: true
+  });
   code = util.format(tpl, id, code.replace(/\'/g, '\\\''));
-  return ast.getAst(code).print_to_string();
+  return ast.getAst(code).print_to_string({beautify: true});
 }
 
 function tpl2js(code, id) {
   // TODO minifier code
   code = util.format('define("%s", [], "%s")', id, code.replace(/\"/g, '\\\"'));
-  return ast.getAst(code).print_to_string();
+  return ast.getAst(code).print_to_string({beautify: true});
 }
 
 // transform json to js

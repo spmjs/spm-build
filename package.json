@@ -8,7 +8,8 @@
     "email": "lepture@me.com"
   },
   "dependencies": {
-    "cmd-util": "*"
+    "cmd-util": "*",
+    "clean-css": "~0.9.0"
   },
   "repository": {
     "type": "git",

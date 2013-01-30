@@ -32,8 +32,6 @@ module.exports = function(grunt) {
       // to retain invalid files/patterns so they can be warned about.
       var files = grunt.file.expand({nonull: true}, fileObj.src);
 
-      var data;
-
       // Concat specified files.
       var data = files.map(function(filepath) {
         // Warn if a source file/pattern was invalid.
@@ -73,7 +71,7 @@ module.exports = function(grunt) {
 
       } else if (options.type === 'all') {
 
-        id = iduri.parseAlias(options.pkg, id)
+        id = iduri.parseAlias(options.pkg, id);
         id = iduri.appendext(id);
         var ret = '';
 

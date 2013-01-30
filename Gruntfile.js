@@ -101,6 +101,16 @@ module.exports = function(grunt) {
         },
         src: 'tmp-concat/multi/**/*'
       }
+    },
+
+    'spm-css-minify': {
+      multi: {
+        options: {
+          src: 'tmp-concat/multi',
+          dest: 'tmp-dist/multi'
+        },
+        src: 'tmp-concat/multi/**/*.css'
+      }
     }
   });
 
@@ -112,7 +122,10 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['spm-transport']);
+  grunt.registerTask(
+    'test',
+    ['spm-transport', 'spm-concat', 'spm-beautify']
+  );
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);
