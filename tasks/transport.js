@@ -50,6 +50,9 @@ module.exports = function(grunt) {
       }
     });
 
+    if (this.errorCount) return false;
+
+    grunt.log.ok('tranport success.');
   });
 
   function transportJS(fpath, destfile, options) {
@@ -84,7 +87,9 @@ module.exports = function(grunt) {
   }
 
   function moduleDependencies(id, options) {
+    id = iduri.parseAlias(options.pkg, id);
     var file = iduri.appendext(id);
+
     var fpath;
     options.paths.some(function(base) {
       var filepath = path.join(base, file);
@@ -104,7 +109,7 @@ module.exports = function(grunt) {
     parsed.forEach(function(meta) {
       meta.dependencies.forEach(function(dep) {
         dep = iduri.absolute(id, dep);
-        if (!grunt.util._.contains(dpes, dep)) {
+        if (!grunt.util._.contains(deps, dep)) {
           deps.push(dep);
         }
       });

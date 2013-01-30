@@ -28,15 +28,23 @@ module.exports = function(grunt) {
 
     'spm-transport': {
       options: {
-        paths: ["sea-modules"],
-        dest: 'tmp-transport'
+        paths: ["test/sea-modules"]
       },
       relative: {
         options: {
-          pkg: "test/cases/relative/package.json",
-          src: "test/cases/relative/src"
+          pkg: 'test/cases/relative/package.json',
+          src: 'test/cases/relative/src',
+          dest: 'tmp-transport/relative'
         },
         src: ["test/cases/relative/src/*.js"]
+      },
+      alias: {
+        options: {
+          pkg: 'test/cases/alias/package.json',
+          src: 'test/cases/alias/src',
+          dest: 'tmp-transport/alias'
+        },
+        src: ["test/cases/alias/src/*.js"]
       }
     },
 
