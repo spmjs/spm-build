@@ -6,16 +6,17 @@
  * Licensed under the MIT license.
  */
 
+var path = require('path');
+
+
 module.exports = function(grunt) {
 
-  // Please see the grunt documentation for more information regarding task
-  // creation: https://github.com/gruntjs/grunt/blob/devel/docs/toc.md
-
-  grunt.registerMultiTask('spm_build', 'Your task description goes here.', function() {
+  grunt.registerMultiTask('spm-concat', 'Concat module to one file.', function() {
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
-      punctuation: '.',
-      separator: ', '
+      paths: ['sea-modules'],
+      type: 'list',
+      dest: 'tmp-concat'
     });
 
     // Iterate over all specified file groups.
@@ -24,25 +25,28 @@ module.exports = function(grunt) {
       // to retain invalid files/patterns so they can be warned about.
       var files = grunt.file.expand({nonull: true}, fileObj.src);
 
-      // Concat specified files.
-      var src = files.map(function(filepath) {
-        // Warn if a source file/pattern was invalid.
-        if (!grunt.file.exists(filepath)) {
-          grunt.log.error('Source file "' + filepath + '" not found.');
-          return '';
-        }
-        // Read file source.
-        return grunt.file.read(filepath);
-      }).join(options.separator);
+      var data;
+      if (options.type === 'relative') {
 
-      // Handle options.
-      src += options.punctuation;
+      } else if (options.type === 'all') {
+
+      } else {
+        // Concat specified files.
+        data = files.map(function(filepath) {
+          // Warn if a source file/pattern was invalid.
+          if (!grunt.file.exists(filepath)) {
+            grunt.log.error('Source file "' + filepath + '" not found.');
+            return '';
+          }
+          return grunt.file.read(filepath);
+        }).join('\n\n');
+      }
 
       // Write the destination file.
-      grunt.file.write(fileObj.dest, src);
+      grunt.file.write(path.join(options.dest, fileObj.dest), data);
 
       // Print a success message.
-      grunt.log.writeln('File "' + fileObj.dest + '" created.');
+      grunt.log.verbose.ok('Concat "' + files +  '" to "' + fileObj.dest + '".');
     });
   });
 

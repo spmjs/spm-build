@@ -49,6 +49,46 @@ module.exports = function(grunt) {
         },
         src: ["test/cases/multi/src/*"]
       }
+    },
+
+    'spm-concat': {
+      options: {
+        paths: ["test/sea-modules"]
+      },
+
+      relative: {
+        options: {
+          type: 'relative',
+          dest: 'tmp-concat/relative'
+        },
+
+        files: {
+          'module.js': 'tmp-transport/relative/module.js'
+        }
+      },
+
+      alias: {
+        options: {
+          type: 'all',
+          dest: 'tmp-concat/alias'
+        },
+
+        files: {
+          'module.js': 'tmp-transport/alias/module.js'
+        }
+      },
+
+      multi: {
+        options: {
+          type: 'list',
+          dest: 'tmp-concat/multi'
+        },
+
+        files: {
+          'module.js': ['tmp-transport/multi/*.js'],
+          'module.css': 'tmp-transport/multi/module.css'
+        }
+      }
     }
   });
 
