@@ -15,9 +15,9 @@ Here are some tips to make things happen.
 $ npm install grunt-cli -g
 ```
 
-Make changes of your `package.json`:
+### Edit `package.json`:
 
-```json
+```
 "devDependencies: {
     "grunt-spm-build": "*",
     "grunt": "0.4.0rc7"
@@ -31,6 +31,8 @@ Make changes of your `package.json`:
     }
 }
 ```
+
+### Gruntfile
 
 Create a `Gruntfile.js` in your project directory:
 
