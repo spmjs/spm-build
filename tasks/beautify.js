@@ -51,7 +51,7 @@ module.exports = function(grunt) {
     grunt.file.write(dest, code);
   }
 
-  function beautyCSS(fpath, dest, options) {
+  function beautyCSS(fpath, dest) {
     var data = grunt.file.read(fpath);
     grunt.file.write(dest, data);
   }

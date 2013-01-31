@@ -187,4 +187,6 @@ function tpl2js(code, id) {
 
 // transform json to js
 function json2js(code, id) {
+  code = util.format('define("%s", [], %s)', id, code);
+  return ast.getAst(code).print_to_string({beautify: true});
 }
