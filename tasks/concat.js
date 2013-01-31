@@ -28,6 +28,9 @@ module.exports = function(grunt) {
 
     // Iterate over all specified file groups.
     this.files.forEach(function(fileObj) {
+      // Only concat js, css, and tpl
+      if (!/\.(js|css|tpl)$/.test(fileObj.dest)) return;
+
       // The source files to be concatenated. The "nonull" option is used
       // to retain invalid files/patterns so they can be warned about.
       var files = grunt.file.expand({nonull: true}, fileObj.src);
