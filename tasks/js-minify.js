@@ -16,7 +16,7 @@ module.exports = function(grunt) {
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
       suffix: '',
-      src: 'dist',
+      src: 'tmp-concat',
       dest: 'dist',
       uglify: {}
     });

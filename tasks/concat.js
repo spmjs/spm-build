@@ -19,7 +19,7 @@ module.exports = function(grunt) {
       paths: ['sea-modules'],
       pkg: 'package.json',
       type: 'list',
-      dest: 'dist'
+      dest: 'tmp-concat'
     });
 
     if (grunt.util._.isString(options.pkg)) {
