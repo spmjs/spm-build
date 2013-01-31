@@ -7,19 +7,51 @@
 
 > If you haven't used [grunt][] before, be sure to check out the [Getting Started][] guide.
 
-From the same directory as your project's [Gruntfile][Getting Started] and [package.json][], install this plugin with the following command:
+Here are some tips to make things happen.
+
+### Install `grunt-cli`:
 
 ```
-$ npm install grunt-spm-build --save-dev
+$ npm install grunt-cli -g
 ```
 
-Once that's done, add this line to your project's Gruntfile:
+Make changes of your `package.json`:
+
+```json
+"devDependencies: {
+    "grunt-spm-build": "*",
+    "grunt": "0.4.0rc7"
+},
+"spm": {
+    "alias": {
+        "class": "arale/class/1.0.0/class"
+    },
+    "output": {
+        "widget.js": "."
+    }
+}
+```
+
+Create a `Gruntfile.js` in your project directory:
 
 ```js
-grunt.loadNpmTasks('grunt-spm-build');
+module.exports = function(grunt) {
+  var pkg = grunt.file.readJSON('package.json');
+  require('grunt-spm-build').init(grunt, {pkg: pkg});
+
+  grunt.loadNpmTasks('grunt-spm-build');
+  grunt.registerTask('default', ['spm-build']);
+}
 ```
 
-If the plugin has been installed correctly, running `grunt --help` at the command line should list the newly-installed plugin's task or tasks. In addition, the plugin should be listed in package.json as a `devDependency`, which ensures that it will be installed whenever the `npm install` command is run.
+Install every dependencies, and run grunt:
+
+```
+$ npm install
+$ grunt
+```
+
+A simple example talks more, have a look at `test/cases/relative`.
 
 [grunt]: http://gruntjs.com/
 [Getting Started]: https://github.com/gruntjs/grunt/blob/devel/docs/getting_started.md
