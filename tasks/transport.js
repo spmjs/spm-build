@@ -41,8 +41,9 @@ module.exports = function(grunt) {
 
       fname = fpath.replace(options.src, '').replace(/^\//, '');
       id = iduri.idFromPackage(options.pkg, fname, options.format);
-
       destfile = path.join(options.dest, fname);
+
+      grunt.log.writeln('Transporting "' + fpath + '" => ' + destfile);
 
       if (/\.js$/.test(fname)) {
         transportJS(fpath, destfile, options);
@@ -57,10 +58,6 @@ module.exports = function(grunt) {
         grunt.file.write(destfile + '.js', data);
       }
     });
-
-    if (this.errorCount) return false;
-
-    grunt.log.ok('tranport success.');
   });
 
   function transportJS(fpath, destfile, options) {

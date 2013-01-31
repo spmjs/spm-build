@@ -32,6 +32,8 @@ module.exports = function(grunt) {
       destfile = path.join(options.dest, fname);
       destfile = destfile.replace(/\.css$/, options.suffix + '.css');
 
+      grunt.log.writeln('Minifying "' + fpath + '" => ' + destfile);
+
       data = grunt.file.read(fpath);
       data = cleancss.process(data, options.cleancss);
       grunt.file.write(destfile, data);

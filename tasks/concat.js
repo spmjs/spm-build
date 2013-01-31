@@ -30,10 +30,12 @@ module.exports = function(grunt) {
     this.files.forEach(function(fileObj) {
       // Only concat js, css, and tpl
       if (!/\.(js|css|tpl)$/.test(fileObj.dest)) return;
+      var destfile = path.join(options.dest, fileObj.dest);
 
       // The source files to be concatenated. The "nonull" option is used
       // to retain invalid files/patterns so they can be warned about.
       var files = grunt.file.expand({nonull: true}, fileObj.src);
+      grunt.log.writeln('Concating "' + files + '" => ' + destfile);
 
       // Concat specified files.
       var data = files.map(function(filepath) {
@@ -46,14 +48,13 @@ module.exports = function(grunt) {
       }).join('\n\n');
 
       if ((options.type === 'relative' || options.type === 'all') && files.length === 1) {
+        grunt.log.write('Including: ');
         data = concat(data, files[0], options);
+        grunt.log.ok();
       }
 
       // Write the destination file.
-      grunt.file.write(path.join(options.dest, fileObj.dest), data);
-
-      // Print a success message.
-      grunt.log.verbose.ok('Concat "' + files +  '" to "' + fileObj.dest + '".');
+      grunt.file.write(destfile, data);
     });
   });
 
@@ -70,6 +71,7 @@ module.exports = function(grunt) {
           grunt.log.error('Source file "' + filepath + '" not found.');
           return '';
         }
+        grunt.log.write(filepath + ' ');
         return grunt.file.read(filepath);
 
       } else if (options.type === 'all') {
@@ -81,6 +83,7 @@ module.exports = function(grunt) {
         options.paths.some(function(base) {
           filepath = path.join(base, id);
           if (grunt.file.exists(filepath)) {
+            grunt.log.write(filepath + ' ');
             ret = grunt.file.read(filepath);
             return true;
           } else {

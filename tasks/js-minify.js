@@ -27,9 +27,12 @@ module.exports = function(grunt) {
         grunt.log.warn(fpath + ' is not js.');
         return;
       }
+
       fname = fpath.replace(options.src, '').replace(/^\//, '');
       destfile = path.join(options.dest, fname);
       destfile = destfile.replace(/\.js$/, options.suffix + '.js');
+
+      grunt.log.writeln('Minifying "' + fpath + '" => ' + destfile);
 
       data = grunt.file.read(fpath);
       if (options.suffix) {

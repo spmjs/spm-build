@@ -22,14 +22,19 @@ module.exports = function(grunt) {
 
     var fname, destfile;
     this.filesSrc.forEach(function(fpath) {
+      if (!/\.(js|css)$/.test(fpath)) return;
       fname = fpath.replace(options.src, '').replace(/^\//, '');
       destfile = path.join(options.dest, fname);
 
       if (/\.js$/.test(fname)) {
         destfile = destfile.replace(/\.js$/, options.suffix + '.js');
+        grunt.log.writeln('Beautifying "' + fpath + '" => ' + destfile);
+
         beautyJS(fpath, destfile, options);
       } else if (/\.css$/.test(fname)) {
         destfile = destfile.replace(/\.css/, options.suffix + '.css');
+        grunt.log.writeln('Beautifying "' + fpath + '" => ' + destfile);
+
         beautyCSS(fpath, destfile, options);
       }
     });

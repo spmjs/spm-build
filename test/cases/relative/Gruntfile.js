@@ -9,7 +9,6 @@
 module.exports = function(grunt) {
 
   var pkg = grunt.file.readJSON('package.json');
-  var spmBuild = require('grunt-spm-build');
 
   grunt.initConfig({
     'spm-clean': {
@@ -18,7 +17,8 @@ module.exports = function(grunt) {
     }
   });
 
-  spmBuild.init(grunt, {pkg: pkg});
+  require('grunt-spm-build').init(grunt, {pkg: pkg});
+
   grunt.loadNpmTasks('grunt-spm-build');
 
   grunt.registerTask('build', ['spm-build']);
