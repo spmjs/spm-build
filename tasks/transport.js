@@ -95,8 +95,11 @@ module.exports = function(grunt) {
   }
 
   function moduleDependencies(id, options) {
-    id = iduri.parseAlias(options.pkg, id);
-    var file = iduri.appendext(id);
+    var alias = iduri.parseAlias(options.pkg, id);
+    // usually this is "$"
+    if (alias === id) return [];
+
+    var file = iduri.appendext(alias);
 
     var fpath;
     options.paths.some(function(base) {
@@ -107,7 +110,7 @@ module.exports = function(grunt) {
       }
     });
     if (!fpath) {
-      grunt.log.warn("can't find module " + id);
+      grunt.log.warn("can't find module " + alias);
       return [];
     }
     var data = grunt.file.read(fpath);
@@ -116,7 +119,7 @@ module.exports = function(grunt) {
 
     parsed.forEach(function(meta) {
       meta.dependencies.forEach(function(dep) {
-        dep = iduri.absolute(id, dep);
+        dep = iduri.absolute(alias, dep);
         if (!grunt.util._.contains(deps, dep)) {
           deps.push(dep);
         }
