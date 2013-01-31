@@ -37,13 +37,12 @@ module.exports = function(grunt) {
 
     var id, fname, destfile, data;
     this.filesSrc.forEach(function(fpath) {
+      if (!/\.(js|css|tpl|json)$/.test(fpath)) return;
+
       fname = fpath.replace(options.src, '').replace(/^\//, '');
       id = iduri.idFromPackage(options.pkg, fname, options.format);
 
       destfile = path.join(options.dest, fname);
-      if (!/\.js$/.test(fname)) {
-        grunt.file.copy(fpath, destfile);
-      }
 
       if (/\.js$/.test(fname)) {
         transportJS(fpath, destfile, options);

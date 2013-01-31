@@ -1,3 +1,5 @@
+var fs = require('fs');
+var path = require('path');
 
 module.exports = function(grunt) {
 
@@ -28,14 +30,28 @@ module.exports = function(grunt) {
     });
 
     this.files.forEach(function(fileObj) {
-      try {
-        grunt.file.copy(fileObj.src, fileObj.dest);
-        grunt.log.ok();
-      } catch (e) {
-        grunt.log.error();
-        grunt.verbose.error(e);
-        grunt.fail.warn('Copy operation failed.');
-      }
+      var files = grunt.file.expand({nonull: true}, fileObj.src);
+      files.map(function(src) {
+        try {
+          copy(src, path.join(options.dest, fileObj.dest));
+          grunt.log.ok();
+        } catch (e) {
+          grunt.log.error();
+          grunt.verbose.error(e);
+          grunt.fail.warn('Copy operation failed.');
+        }
+      });
     });
   });
+
+  function copy(src, dest) {
+    if (fs.statSync(src).isDirectory()) {
+      grunt.file.recurse(src, function(fpath) {
+        var fname = fpath.replace(src, '').replace(/^\//, '');
+        grunt.file.copy(fpath, path.join(dest, fname));
+      });
+    } else {
+      grunt.file.copy(src, dest);
+    }
+  }
 };
