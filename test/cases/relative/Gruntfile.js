@@ -8,22 +8,19 @@
 
 module.exports = function(grunt) {
 
+  var pkg = grunt.file.readJSON('package.json');
+  var spmBuild = require('grunt-spm-build');
+
   grunt.initConfig({
-    clean: {
-      transport: ['tmp-transport'],
-      concat: ['tmp-concat'],
+    'spm-clean': {
+      build: ['tmp-transport', 'tmp-concat'],
       dist: ['dist']
     }
   });
 
-  var pkg = grunt.file.readJSON('package.json');
-  var spmBuild = require('grunt-spm-build');
   spmBuild.init(grunt, {pkg: pkg});
-
   grunt.loadNpmTasks('grunt-spm-build');
-  grunt.loadNpmTasks('grunt-contrib-clean');
 
-  grunt.registerTask('build', ['spm-build', 'clean:transport', 'clean:concat']);
-
-  grunt.registerTask('default', ['clean']);
+  grunt.registerTask('build', ['spm-build']);
+  grunt.registerTask('default', ['spm-clean']);
 };

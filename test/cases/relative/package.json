@@ -3,7 +3,6 @@
   "name": "relative",
   "version": "0.1.0",
   "devDependencies": {
-    "grunt-contrib-clean": "0.4.0rc6",
     "grunt-spm-build": "*",
     "grunt": "0.4.0rc7"
   },
