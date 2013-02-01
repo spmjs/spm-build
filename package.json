@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "cmd-util": "*",
+    "uglify-js": "*",
     "clean-css": "~0.9.0"
   },
   "repository": {

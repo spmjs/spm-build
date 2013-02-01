@@ -6,8 +6,10 @@
  * Licensed under the MIT license.
  */
 
-var ast = require('cmd-util').ast;
 var path = require('path');
+var uglify = require('uglify-js');
+var ast = require('cmd-util').ast;
+var cleancss = require('clean-css');
 
 
 module.exports = function(grunt) {
@@ -62,9 +64,43 @@ module.exports = function(grunt) {
           return v + options.suffix;
         });
       }
-      data = ast.getAst(data).print_to_string(options.uglify);
+      var astCache = uglify.parse(data, {filename: fpath});
+      astCache.figure_out_scope();
+      astCache.mangle_names();
+      var compressor = uglify.Compressor(options.uglify);
+      astCache = astCache.transform(compressor);
+      data = astCache.print_to_string();
       grunt.file.write(destfile, data);
     });
 
   });
+
+  grunt.registerMultiTask('spm-css-minify', 'Minify CSS.', function() {
+    // Merge task-specific and/or target-specific options with these defaults.
+    var options = this.options({
+      suffix: '',
+      src: 'tmp-concat',
+      dest: 'dist',
+      cleancss: {}
+    });
+
+    var fname, destfile, data;
+    this.filesSrc.forEach(function(fpath) {
+      if (!/\.css$/.test(fpath)) {
+        grunt.log.warn(fpath + ' is not css.');
+        return;
+      }
+      fname = fpath.replace(options.src, '').replace(/^\//, '');
+      destfile = path.join(options.dest, fname);
+      destfile = destfile.replace(/\.css$/, options.suffix + '.css');
+
+      grunt.log.writeln('Minifying "' + fpath + '" => ' + destfile);
+
+      data = grunt.file.read(fpath);
+      data = cleancss.process(data, options.cleancss);
+      grunt.file.write(destfile, data);
+    });
+
+  });
+
 };
