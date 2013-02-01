@@ -18,7 +18,26 @@ module.exports = function(grunt) {
       suffix: '',
       src: 'tmp-concat',
       dest: 'dist',
-      uglify: {}
+      uglify: {
+        sequences: true,
+        properties: true,
+        dead_code: true,
+        drop_debugger: true,
+        unsafe: false,
+        conditionals: true,
+        comparisons: true,
+        evaluate: true,
+        booleans: true,
+        loops: true,
+        unused: true,
+        hoist_funs: true,
+        hoist_vars: false,
+        if_return: true,
+        join_vars: true,
+        cascade: true,
+        side_effects: true,
+        warnings: true
+      }
     });
 
     var fname, destfile;
