@@ -24,7 +24,6 @@
       "url": "https://github.com/spmjs/grunt-spm-build/blob/master/LICENSE-MIT"
     }
   ],
-  "main": "lib/config",
   "engines": {
     "node": ">= 0.8.0"
   },
