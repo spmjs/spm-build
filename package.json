@@ -28,9 +28,10 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "mocha test/run.js --reporter spec"
   },
   "devDependencies": {
+    "mocha": "*",
     "grunt-contrib-jshint": "0.1.1rc6",
     "grunt-contrib-clean": "0.4.0rc6",
     "grunt": "0.4.0rc7"

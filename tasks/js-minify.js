@@ -40,7 +40,7 @@ module.exports = function(grunt) {
       }
     });
 
-    var fname, destfile;
+    var fname, destfile, data;
     this.filesSrc.forEach(function(fpath) {
       if (!/\.js/.test(fpath)) {
         grunt.log.warn(fpath + ' is not js.');
