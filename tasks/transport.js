@@ -20,7 +20,11 @@ module.exports = function(grunt) {
       paths: ['sea-modules'],
       pkg: 'package.json',
       src: 'src',
-      dest: 'tmp-transport'
+      dest: 'tmp-transport',
+      uglify: {
+        beautify: true,
+        comments: true
+      }
     });
 
     if (grunt.util._.isString(options.pkg)) {
@@ -82,7 +86,8 @@ module.exports = function(grunt) {
       dependencies: deps,
       require: function(v) {
         return iduri.parseAlias(options.pkg, v);
-      }
+      },
+      options: options.uglify
     });
     return grunt.file.write(destfile, data);
   }

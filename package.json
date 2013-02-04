@@ -1,14 +1,14 @@
 {
   "name": "grunt-spm-build",
   "description": "grunt tasks for spm build.",
-  "version": "0.1.0",
+  "version": "0.1.1a1",
   "homepage": "https://github.com/spmjs/grunt-spm-build",
   "author": {
     "name": "Hsiaoming Yang",
     "email": "lepture@me.com"
   },
   "dependencies": {
-    "cmd-util": "~0.1.0",
+    "cmd-util": "~0.1.1a1",
     "uglify-js": "~2.2.0",
     "clean-css": "~0.9.0"
   },

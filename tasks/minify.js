@@ -20,6 +20,7 @@ module.exports = function(grunt) {
       suffix: '',
       src: 'tmp-concat',
       dest: 'dist',
+      reserved: [],
       uglify: {
         sequences: true,
         properties: true,
@@ -65,10 +66,14 @@ module.exports = function(grunt) {
         });
       }
       var astCache = uglify.parse(data, {filename: fpath});
+
       astCache.figure_out_scope();
-      astCache.mangle_names();
       var compressor = uglify.Compressor(options.uglify);
       astCache = astCache.transform(compressor);
+
+      astCache.figure_out_scope();
+      astCache.mangle_names({except: options.reserved});
+
       data = astCache.print_to_string();
       grunt.file.write(destfile, data);
     });
