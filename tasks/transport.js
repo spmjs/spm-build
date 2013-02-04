@@ -142,13 +142,15 @@ module.exports = function(grunt) {
     var data = grunt.file.read(fpath);
     var parsed = ast.parseFirst(data);
     parsed.dependencies.forEach(function(id) {
-      deps.push(id);
       if (id.charAt(0) === '.') {
+        deps.push(id);
         if (/\.js$/.test(iduri.appendext(id))) {
           deps = grunt.util._.union(deps, relativeDependencies(id, options, fpath));
         }
       } else {
         if (!moduleDeps.hasOwnProperty(id)) {
+          deps.push(iduri.parseAlias(options.pkg, id));
+
           var mdeps = moduleDependencies(id, options);
           moduleDeps[id] = mdeps;
           deps = grunt.util._.union(deps, mdeps);
