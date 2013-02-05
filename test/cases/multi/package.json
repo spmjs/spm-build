@@ -1,5 +1,5 @@
 {
-  "root": "test",
+  "family": "test",
   "name": "multi",
   "version": "0.1.0",
   "spm": {
