@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "cmd-util": "~0.1.1a1",
-    "request": "~2.12.0",
     "uglify-js": "~2.2.0",
     "clean-css": "~0.9.0"
   },
