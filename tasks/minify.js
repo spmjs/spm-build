@@ -69,6 +69,13 @@ module.exports = function(grunt) {
 
       astCache.figure_out_scope();
       var compressor = uglify.Compressor(options.uglify);
+
+      // rewrite warn function
+      compressor.warn = function() {
+        var msg = uglify.string_template.apply(this, arguments);
+        grunt.log.warn(msg);
+      };
+
       astCache = astCache.transform(compressor);
 
       astCache.figure_out_scope();
