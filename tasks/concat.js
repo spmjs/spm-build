@@ -48,7 +48,6 @@ module.exports = function(grunt) {
       }).join('\n\n');
 
       if ((options.type === 'relative' || options.type === 'all') && files.length === 1) {
-        grunt.log.write('Including: ');
         data = concat(data, files[0], options);
         grunt.log.ok();
       }
@@ -71,7 +70,6 @@ module.exports = function(grunt) {
           grunt.log.error('Source file "' + filepath + '" not found.');
           return '';
         }
-        grunt.log.write(filepath + ' ');
         return grunt.file.read(filepath);
 
       } else if (options.type === 'all') {
