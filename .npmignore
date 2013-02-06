@@ -1,0 +1,9 @@
+test/
+.idea/
+*.iml
+dist
+*-cov
+coverage.html
+node_modules
+npm-debug.log
+tmp-*
