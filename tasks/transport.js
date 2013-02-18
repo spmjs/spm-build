@@ -20,7 +20,7 @@ module.exports = function(grunt) {
       paths: ['sea-modules'],
       pkg: 'package.json',
       src: 'src',
-      dest: 'tmp-transport',
+      dest: '.build/transport',
       uglify: {
         beautify: true,
         comments: true
