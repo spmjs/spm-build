@@ -47,6 +47,7 @@ module.exports = function(grunt) {
   function copy(src, dest) {
     if (fs.statSync(src).isDirectory()) {
       grunt.file.recurse(src, function(fpath) {
+        src = src.replace(/\\/g, '/');
         var fname = fpath.replace(src, '').replace(/^\//, '');
         grunt.file.copy(fpath, path.join(dest, fname));
       });
