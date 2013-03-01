@@ -86,9 +86,9 @@ module.exports = function(grunt) {
       dependencies: deps,
       require: function(v) {
         return iduri.parseAlias(options.pkg, v);
-      },
-      options: options.uglify
+      }
     });
+    data = data.print_to_string(options.uglify);
     return grunt.file.write(destfile, data);
   }
 

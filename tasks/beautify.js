@@ -49,7 +49,7 @@ module.exports = function(grunt) {
       }
       return v + options.suffix;
     });
-    var code = ast.getAst(data).print_to_string({
+    var code = data.print_to_string({
       beautify: true,
       comments: true
     });

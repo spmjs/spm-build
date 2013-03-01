@@ -57,15 +57,16 @@ module.exports = function(grunt) {
       grunt.log.writeln('Minifying "' + fpath + '" => ' + destfile);
 
       data = grunt.file.read(fpath);
+      var astCache = uglify.parse(data, {filename: fpath});
+
       if (options.suffix) {
-        data = ast.modify(data, function(v) {
+        astCache = ast.modify(astCache, function(v) {
           if (/\.js$/.test(v)) {
             return v.replace(/\.js$/, options.suffix + '.js');
           }
           return v + options.suffix;
         });
       }
-      var astCache = uglify.parse(data, {filename: fpath});
 
       astCache.figure_out_scope();
       var compressor = uglify.Compressor(options.uglify);
