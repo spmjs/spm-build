@@ -1,7 +1,7 @@
 {
   "name": "grunt-spm-build",
   "description": "grunt tasks for spm build.",
-  "version": "0.1.1a3",
+  "version": "0.1.1",
   "homepage": "https://github.com/spmjs/grunt-spm-build",
   "author": {
     "name": "Hsiaoming Yang",
