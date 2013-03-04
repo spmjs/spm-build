@@ -22,8 +22,8 @@ describe('grunt-spm-build', function() {
             if (!grunt.file.exists(output)) {
               throw fname + ' is not existed.';
             }
-            var expectlines = grunt.file.read(fpath).split('\n');
-            var retlines = grunt.file.read(output).split('\n');
+            var expectlines = grunt.file.read(fpath).trim().split('\n');
+            var retlines = grunt.file.read(output).trim().split('\n');
             var i = 0;
             expectlines.forEach(function(line) {
               line = line.trim();

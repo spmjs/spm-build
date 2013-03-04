@@ -119,10 +119,13 @@ module.exports = function(grunt) {
     var parsed = ast.parse(data);
     var deps = [];
 
+    var ids = parsed.map(function(meta) {
+      return meta.id;
+    });
     parsed.forEach(function(meta) {
       meta.dependencies.forEach(function(dep) {
         dep = iduri.absolute(alias, dep);
-        if (!grunt.util._.contains(deps, dep)) {
+        if (!grunt.util._.contains(deps, dep) && !grunt.util._.contains(ids, dep)) {
           deps.push(dep);
         }
       });
