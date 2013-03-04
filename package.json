@@ -29,12 +29,12 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "test": "mocha test/run.js --globals _$jscoverage --reporter dot"
+    "test": "mocha test/run.js --globals _$jscoverage --reporter dot",
+    "prepublish": "make clean"
   },
   "devDependencies": {
     "mocha": "*",
     "grunt-contrib-jshint": "0.1.1",
-    "grunt-contrib-clean": "0.4.0",
     "grunt": "0.4.0"
   },
   "keywords": [
