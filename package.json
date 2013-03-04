@@ -1,7 +1,7 @@
 {
   "name": "grunt-spm-build",
   "description": "grunt tasks for spm build.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/spmjs/grunt-spm-build",
   "author": {
     "name": "Hsiaoming Yang",
@@ -29,7 +29,7 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "test": "mocha test/run.js --reporter dot"
+    "test": "mocha test/run.js --globals _$jscoverage --reporter dot"
   },
   "devDependencies": {
     "mocha": "*",
