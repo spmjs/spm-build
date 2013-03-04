@@ -1,11 +1,8 @@
 {
   "family": "test",
-  "name": "multi",
+  "name": "css",
   "version": "0.1.0",
   "spm": {
-    "alias": {
-      "class": "arale/class/1.0.0/class"
-    },
     "output": {
       "module.js": "."
     }

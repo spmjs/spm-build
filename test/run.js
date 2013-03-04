@@ -10,6 +10,8 @@ describe('grunt-spm-build', function() {
   });
   cases.forEach(function(dir) {
     it('should build ' + dir, function() {
+      // reset config
+      grunt.config.data = {};
       grunt.tasks(
         ['build'],
         {gruntfile: path.join(casedir, dir, 'Gruntfile.js')},
@@ -20,14 +22,20 @@ describe('grunt-spm-build', function() {
             var fname = fpath.replace(expectdir, '').replace(/^\//, '');
             var output = path.join(dist, fname);
             if (!grunt.file.exists(output)) {
-              throw fname + ' is not existed.';
+              throw new Error(fname + ' is not existed.');
             }
             var expectlines = grunt.file.read(fpath).trim().split('\n');
+            expectlines = expectlines.filter(function(line) {
+              return line;
+            });
             var retlines = grunt.file.read(output).trim().split('\n');
+            retlines = retlines.filter(function(line) {
+              return line;
+            });
             var i = 0;
             expectlines.forEach(function(line) {
-              line = line.trim();
-              var retdata = retlines[i].trim();
+              line = line.replace(/\s+/g, '');
+              var retdata = retlines[i].replace(/\s+/g, '');
               if (line !== retdata) {
                 grunt.file.delete(dist);
                 throw new Error(

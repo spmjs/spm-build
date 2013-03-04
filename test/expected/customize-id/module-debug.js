@@ -1,0 +1,1 @@
+define("module-debug", [], function(require) {});

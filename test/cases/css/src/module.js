@@ -1,3 +1,3 @@
 define(function(require) {
-  require('class');
+  require('./module.css');
 });

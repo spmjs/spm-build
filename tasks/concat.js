@@ -66,6 +66,7 @@ module.exports = function(grunt) {
       if (id.charAt(0) === '.') {
 
         filepath = path.join(path.dirname(fpath), iduri.appendext(id));
+        if (!/\.js$/.test(filepath)) filepath += '.js';
         if (!grunt.file.exists(filepath)) {
           grunt.log.error('Source file "' + filepath + '" not found.');
           return '';
