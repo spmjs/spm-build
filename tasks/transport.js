@@ -19,8 +19,6 @@ module.exports = function(grunt) {
     var options = this.options({
       paths: ['sea-modules'],
       pkg: 'package.json',
-      src: 'src',
-      dest: '.build/transport',
       uglify: {
         beautify: true,
         comments: true
@@ -40,27 +38,36 @@ module.exports = function(grunt) {
     }
 
     var id, fname, destfile, data;
-    this.filesSrc.forEach(function(fpath) {
-      if (!/\.(js|css|tpl|json)$/.test(fpath)) return;
+    this.files.forEach(function(fileObj) {
+      fileObj.src.forEach(function(fpath) {
+        if (!/\.(js|css|tpl|json)$/.test(fpath)) return;
 
-      fname = fpath.replace(options.src, '').replace(/^\//, '');
-      id = iduri.idFromPackage(options.pkg, fname, options.format);
-      destfile = path.join(options.dest, fname);
+        // get the right filename and filepath
+        if (fileObj.cwd) {
+          // not expanded
+          fname = fpath;
+          fpath = path.join(fileObj.cwd, fpath);
+        } else {
+          fname = path.relative(fileObj.orig.cwd, fpath);
+        }
 
-      grunt.log.writeln('Transporting "' + fpath + '" => ' + destfile);
+        destfile = path.join(fileObj.dest, fname);
+        id = iduri.idFromPackage(options.pkg, fname, options.format);
+        grunt.log.writeln('Transporting "' + fpath + '" => ' + destfile);
 
-      if (/\.js$/.test(fname)) {
-        transportJS(fpath, destfile, options);
-      } else if (/\.css$/.test(fname)) {
-        data = css2js(grunt.file.read(fpath), id);
-        grunt.file.write(destfile + '.js', data);
-      } else if (/\.tpl$/.test(fname)) {
-        data = tpl2js(grunt.file.read(fpath), id);
-        grunt.file.write(destfile + '.js', data);
-      } else if (/\.json$/.test(fname)) {
-        data = json2js(grunt.file.read(fpath), id);
-        grunt.file.write(destfile + '.js', data);
-      }
+        if (/\.js$/.test(fname)) {
+          transportJS(fpath, destfile, options);
+        } else if (/\.css$/.test(fname)) {
+          data = css2js(grunt.file.read(fpath), id);
+          grunt.file.write(destfile + '.js', data);
+        } else if (/\.tpl$/.test(fname)) {
+          data = tpl2js(grunt.file.read(fpath), id);
+          grunt.file.write(destfile + '.js', data);
+        } else if (/\.json$/.test(fname)) {
+          data = json2js(grunt.file.read(fpath), id);
+          grunt.file.write(destfile + '.js', data);
+        }
+      });
     });
   });
 
