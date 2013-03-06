@@ -3,6 +3,7 @@ var path = require('path');
 var grunt = require('grunt');
 
 describe('grunt-spm-build', function() {
+  grunt.log.muted = true;
   var casedir = path.join(__dirname, 'cases');
   var retdir = path.join(__dirname, 'expected');
   var cases = fs.readdirSync(casedir).filter(function(dir) {

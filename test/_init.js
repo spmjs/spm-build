@@ -8,7 +8,6 @@ exports.lib = function() {
 };
 
 exports.loadTasks = function(grunt) {
-  grunt.log.muted = true;
   var tasks = path.resolve(__dirname, '../tasks');
   if (process.env.SPM_COVERAGE) {
     grunt.loadTasks(tasks + '-cov');
