@@ -8,8 +8,8 @@
     "email": "lepture@me.com"
   },
   "dependencies": {
-    "grunt-cmd-transport": "~0.1.0",
-    "grunt-cmd-concat": "~0.1.0",
+    "grunt-cmd-transport": "0.1.0a2",
+    "grunt-cmd-concat": "0.1.0a2",
     "grunt-contrib-uglify": "~0.1.2",
     "grunt-contrib-copy": "~0.4.0",
     "grunt-contrib-clean": "~0.4.0"

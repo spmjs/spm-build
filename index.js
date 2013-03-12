@@ -32,6 +32,7 @@ function transportConfig(options, pkg) {
     files: [{
       cwd: options.source || 'src',
       src: '**/*',
+      filter: 'isFile',
       dest: '.build'
     }]
   };
