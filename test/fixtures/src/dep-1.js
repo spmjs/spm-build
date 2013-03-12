@@ -1,3 +1,3 @@
 define(function(require) {
-  require('./module-2');
+  require('./dep-2');
 });

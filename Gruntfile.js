@@ -8,6 +8,8 @@
 
 module.exports = function(grunt) {
 
+  var init = require('./index');
+
   // Project configuration.
   grunt.initConfig({
     jshint: {
@@ -21,8 +23,20 @@ module.exports = function(grunt) {
     }
   });
 
+  init(grunt, {
+    paths: ['test/fixtures/sea-modules'],
+    source: 'test/fixtures/src',
+    pkg: 'test/fixtures/package.json'
+  });
+
   // Actually load this plugin's task(s).
-  grunt.loadTasks('tasks');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-cmd-transport');
+  grunt.loadNpmTasks('grunt-cmd-concat');
+
+  grunt.registerTask('build', ['spm-build']);
 
   // These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-jshint');
