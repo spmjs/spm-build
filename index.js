@@ -25,6 +25,7 @@ function transportConfig(options, pkg) {
   options = options || {};
   pkg = pkg || {spm: {}};
   options.source = options.source || pkg.spm.source;
+  options.format = options.format || pkg.spm.format;
   var config = {
     options: {
       pkg: pkg
