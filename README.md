@@ -1,6 +1,6 @@
 # grunt-spm-build
 
-> grunt tasks for spm build.
+> grunt tasks collection for spm build.
 
 
 ## Getting Started
@@ -15,83 +15,31 @@ Here are some tips to make things happen.
 $ npm install grunt-cli -g
 ```
 
-### Edit `package.json`:
 
-```
-"devDependencies: {
-    "grunt-spm-build": "*",
-    "grunt": "0.4.0rc7"
-},
-"spm": {
-    "alias": {
-        "class": "arale/class/1.0.0/class"
-    },
-    "output": {
-        "widget.js": "."
-    }
-}
-```
+## Collection
 
-### Gruntfile
+This is a collection of these tasks:
 
-Create a `Gruntfile.js` in your project directory:
-
-```js
-module.exports = function(grunt) {
-  var pkg = grunt.file.readJSON('package.json');
-  require('grunt-spm-build').init(grunt, {pkg: pkg});
-
-  grunt.loadNpmTasks('grunt-spm-build');
-  grunt.registerTask('default', ['spm-build']);
-}
-```
-
-Install every dependencies, and run grunt:
-
-```
-$ npm install
-$ grunt
-```
-
-A simple example talks more, have a look at `test/cases/relative`.
-
-[grunt]: http://gruntjs.com/
-[Getting Started]: https://github.com/gruntjs/grunt/blob/devel/docs/getting_started.md
-[package.json]: https://npmjs.org/doc/json.html
+- grunt-cmd-transport: https://github.com/spmjs/grunt-cmd-transport
+- grunt-cmd-concat: https://github.com/spmjs/grunt-cmd-concat
+- grunt-contrib-uglify: https://github.com/gruntjs/grunt-contrib-uglify
+- grunt-contrib-copy: https://github.com/gruntjs/grunt-contrib-copy
+- grunt-contrib-clean: https://github.com/gruntjs/grunt-contrib-clean
 
 
-## The tasks
+## Config
 
-- spm-transport: transport js, css, tpl to cmd (with id and dependencies).
-- spm-concat: concat files into one file.
-- spm-beautify: save a pretty js or css source file.
-- spm-css-minify: minify css files via clean-css.
-- spm-js-minify: minify js files via uglify-js.
-
-### spm-transport
-
-In your project's Gruntfile, add a section named `spm-transport` to the data object passed into `grunt.initConfig()`.
+This collection has a built-in config system, it will generate a config for you. That means you can set your `Gruntfile.js` as:
 
 ```js
 grunt.initConfig({
-  'spm-transport': {
-    options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
-  },
+  // your other configs
 })
+
+var init = require('grunt-spm-build')
+init(grunt, {pkg: 'package.json'})
+
+grunt.loadNpmTasks('grunt-spm-build')
+
+grunt.registerTask('default', ['spm-build'])
 ```
-
-### spm-concat
-
-
-### spm-beautify
-
-
-### spm-css-minify
-
-
-### spm-js-minify
