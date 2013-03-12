@@ -14,7 +14,7 @@ function initConfig(grunt, options) {
 
   grunt.registerTask(
     'spm-build', [
-      'transport', 'concat', 'uglify', 'clean'
+      'transport', 'concat', 'uglify', 'copy', 'clean'
   ]);
 }
 
@@ -45,19 +45,27 @@ function transportConfig(options, pkg) {
 function distConfig(pkg) {
   var output = pkg.spm.output;
 
-  var files = {}, dists = {};
+  var concats = {}, uglifies = {}, copies = [];
   output.forEach(function(name) {
     if (name.indexOf('*') === -1) {
-      files['dist/' + name] = ['.build/' + name];
-      dists['dist/' + name] = ['dist/' + name];
+      concats['dist/' + name] = ['.build/' + name];
+      uglifies['dist/' + name] = ['dist/' + name];
 
       // debugfile
       name = name.replace(/\.js$/, '-debug.js');
-      files['dist/' + name] = ['.build/' + name];
+      concats['dist/' + name] = ['.build/' + name];
+    } else {
+      copies.push({
+        cwd: '.build',
+        src: name,
+        expand: true,
+        dest: 'dist'
+      })
     }
   });
   return {
-    concat: {spm: {files: files}},
-    uglify: {spm: {files: dists}}
+    concat: {spm: {files: concats}},
+    uglify: {spm: {files: uglifies}},
+    copy: {spm: {files: copies}},
   }
 }
