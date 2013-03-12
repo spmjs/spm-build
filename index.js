@@ -14,7 +14,8 @@ function initConfig(grunt, options) {
 
   grunt.registerTask(
     'spm-build', [
-      'transport', 'concat', 'uglify', 'copy', 'clean'
+      'transport:spm', 'concat:spm', 'uglify:spm', 'copy:spm',
+      'clean:spm'
   ]);
 }
 
