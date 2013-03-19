@@ -35,8 +35,7 @@
     "node": ">= 0.8.19"
   },
   "scripts": {
-    "test": "mocha test/run.js --globals _$jscoverage --reporter dot",
-    "prepublish": "make clean"
+    "prepublish": "grunt"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "0.1.1",
