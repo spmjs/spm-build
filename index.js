@@ -26,14 +26,14 @@ function initConfig(grunt, options) {
   grunt.registerTask(
     'spm-build', [
       // build css
-      'transport:spm',  // transport everything
-      'concat:css',
-      'cssmin',
+      'transport:spm',  // src/* -> .build/src/*
+      'concat:css',   // .build/src/*.css -> .build/dist/*.css
+      'cssmin',   // .build/dist/*.css -> dist/*.css
 
       // build js (must be invoke after css build)
-      'transport:css',  // css2js
-      'concat:js',
-      'uglify',
+      'transport:css',  // .build/dist/*.css -> .build/src/*.css.js
+      'concat:js',  // .build/src/* -> .build/dist/*.js
+      'uglify',  // .build/dist/*.js -> dist/*.js
 
       // resource
       'copy',
@@ -41,7 +41,7 @@ function initConfig(grunt, options) {
   ]);
 }
 
-module.exports = initConfig;
+exports.initConfig = initConfig;
 
 // transport everything:
 //
@@ -109,12 +109,13 @@ function transportConfig(options, pkg) {
   };
   ['paths', 'format', 'debug', 'uglify'].forEach(function(key) {
     if (options.hasOwnProperty(key)) {
-      spmConfig.options[key] = options[key]
-      cssConfig.options[key] = options[key]
+      spmConfig.options[key] = options[key];
+      cssConfig.options[key] = options[key];
     }
   });
   return {spm: spmConfig, css: cssConfig};
 }
+exports.transportConfig = transportConfig;
 
 
 // concat every css
@@ -201,5 +202,6 @@ function distConfig(options, pkg) {
     },
     uglify: {js: {files: jsmins}},
     copy: {spm: {files: copies}},
-  }
+  };
 }
+exports.distConfig = distConfig;

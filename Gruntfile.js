@@ -8,15 +8,14 @@
 
 module.exports = function(grunt) {
 
-  var init = require('./');
-  console.log(init)
+  var candy = require('./');
 
   // Project configuration.
   grunt.initConfig({
     jshint: {
       all: [
         'Gruntfile.js',
-        'tasks/*.js'
+        'index.js'
       ],
       options: {
         jshintrc: '.jshintrc',
@@ -24,7 +23,7 @@ module.exports = function(grunt) {
     }
   });
 
-  init(grunt, {
+  candy.initConfig(grunt, {
     paths: ['test/fixtures/sea-modules'],
     source: 'test/fixtures/src',
     pkg: 'test/fixtures/package.json'
