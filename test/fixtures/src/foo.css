@@ -1,0 +1,7 @@
+@import url('./bar.css');
+
+foo {
+  color: red;
+}
+
+@import url('base')
