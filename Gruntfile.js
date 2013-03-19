@@ -8,7 +8,8 @@
 
 module.exports = function(grunt) {
 
-  var init = require('./index');
+  var init = require('./');
+  console.log(init)
 
   // Project configuration.
   grunt.initConfig({
@@ -30,9 +31,10 @@ module.exports = function(grunt) {
   });
 
   // Actually load this plugin's task(s).
-  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-cmd-transport');
   grunt.loadNpmTasks('grunt-cmd-concat');
 

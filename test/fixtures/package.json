@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "spm": {
     "alias": {
-      "class": "arale/class/1.0.0/class"
+      "class": "arale/class/1.0.0/class",
+      "base": "alice/base/1.0.0/base.css"
     },
     "output": ["alias.js", "relative.js", "foo.css", "i18n/*"]
   }
