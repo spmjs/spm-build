@@ -43,3 +43,9 @@ grunt.loadNpmTasks('grunt-spm-build')
 
 grunt.registerTask('default', ['spm-build'])
 ```
+
+## Changelog
+
+**2013-03-22** `0.2.0b1`
+
+The beta version.
