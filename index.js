@@ -200,7 +200,12 @@ function distConfig(options, pkg) {
       options: {keepSpecialComments: 0},
       css: {files: cssmins}
     },
-    uglify: {js: {files: jsmins}},
+    uglify: {
+      options: {
+        footer: '\n'
+      },
+      js: {files: jsmins}
+    },
     copy: {spm: {files: copies}},
   };
 }
