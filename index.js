@@ -1,4 +1,6 @@
 function initConfig(grunt, options) {
+  var path = require('path');
+
   options = options || {};
 
   var style = require('grunt-cmd-transport').style;
@@ -23,6 +25,18 @@ function initConfig(grunt, options) {
 
   grunt.util._.defaults(grunt.config.data, data);
 
+  grunt.registerTask('newline', function() {
+    grunt.file.recurse('dist', function(f) {
+      var extname = path.extname(f);
+      if (extname === '.js' || extname === '.css') {
+        var text = grunt.file.read(f);
+        if (!/\n$/.test(text)) {
+          grunt.file.write(f, text + '\n');
+        }
+      }
+    });
+  });
+
   grunt.registerTask(
     'spm-build', [
       // build css
@@ -37,7 +51,8 @@ function initConfig(grunt, options) {
 
       // resource
       'copy',
-      'clean'
+      'clean',
+      'newline'
   ]);
 }
 
