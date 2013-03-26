@@ -23,8 +23,58 @@ This is a collection of these tasks:
 - grunt-cmd-transport: https://github.com/spmjs/grunt-cmd-transport
 - grunt-cmd-concat: https://github.com/spmjs/grunt-cmd-concat
 - grunt-contrib-uglify: https://github.com/gruntjs/grunt-contrib-uglify
+- grunt-contrib-cssmin: https://github.com/gruntjs/grunt-contrib-cssmin
 - grunt-contrib-copy: https://github.com/gruntjs/grunt-contrib-copy
 - grunt-contrib-clean: https://github.com/gruntjs/grunt-contrib-clean
+
+
+## Build Process
+
+Understanding the build process. Take javascript as the example:
+
+### transport
+
+Transport the writable module into full stack module.
+
+Before transport:
+
+```js
+define(function(require, exports, module) {
+    var jquery = require('jquery');
+    var foo = require('./foo');
+    module.exports = doSomething;
+});
+```
+
+After transport:
+
+```js
+define('family/name/version/name', ['jquery/jquery/1.7.2/jquery', './foo'], function(require, exports, module) {
+    var jquery = require('jquery/jquery/1.7.2/jquery');
+    var foo = require('./foo');
+    module.exports = doSomething;
+});
+```
+
+### concat
+
+Concatenate relative dependencies. The js file will contain every relative dependencies:
+
+```js
+define('....', ['...', './foo'], function(require, exports, module) {
+    // ....
+    var foo = require('./foo');
+    // ....
+});
+
+define('.../foo', [], function(require, exports, module) {
+    // ....
+});
+```
+
+### minify
+
+We can use uglify to compress the code.
 
 
 ## Config
