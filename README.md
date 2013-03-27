@@ -86,7 +86,7 @@ grunt.initConfig({
   // your other configs
 })
 
-var init = require('grunt-spm-build')
+var init = require('grunt-spm-build').initConfig
 init(grunt, {pkg: 'package.json'})
 
 grunt.loadNpmTasks('grunt-spm-build')
