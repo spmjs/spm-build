@@ -20,6 +20,9 @@ module.exports = function(grunt) {
       options: {
         jshintrc: '.jshintrc',
       },
+    },
+    clean: {
+      tmp: ['tmp']
     }
   });
 
@@ -27,7 +30,7 @@ module.exports = function(grunt) {
     paths: ['test/fixtures/sea-modules'],
     source: 'test/fixtures/src',
     pkg: 'test/fixtures/package.json'
-  });
+  }, true);
 
   // Actually load this plugin's task(s).
   grunt.loadNpmTasks('grunt-contrib-uglify');

@@ -1,4 +1,4 @@
-function initConfig(grunt, options) {
+function initConfig(grunt, options, deepMerge) {
   var path = require('path');
 
   options = options || {};
@@ -23,7 +23,13 @@ function initConfig(grunt, options) {
   data.transport = transportConfig(options, pkg);
   data.clean = {spm: ['.build']};
 
-  grunt.util._.defaults(grunt.config.data, data);
+  // deepMerge should merge to target
+  if (deepMerge) {
+    grunt.util._.merge(data, grunt.config.data);
+    grunt.config.data = data;
+  } else {
+    grunt.util._.defaults(grunt.config.data, data);
+  }
 
   grunt.registerTask('newline', function() {
     grunt.file.recurse('dist', function(f) {
@@ -42,16 +48,16 @@ function initConfig(grunt, options) {
       // build css
       'transport:spm',  // src/* -> .build/src/*
       'concat:css',   // .build/src/*.css -> .build/dist/*.css
-      'cssmin',   // .build/dist/*.css -> dist/*.css
+      'cssmin:css',   // .build/dist/*.css -> dist/*.css
 
       // build js (must be invoke after css build)
       'transport:css',  // .build/dist/*.css -> .build/src/*.css.js
       'concat:js',  // .build/src/* -> .build/dist/*.js
-      'uglify',  // .build/dist/*.js -> dist/*.js
+      'uglify:js',  // .build/dist/*.js -> dist/*.js
 
       // resource
-      'copy',
-      'clean',
+      'copy:spm',
+      'clean:spm',
       'newline'
   ]);
 }
