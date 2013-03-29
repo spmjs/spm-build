@@ -21,7 +21,7 @@ function initConfig(grunt, options, deepMerge) {
 
   // import transport rules
   data.transport = transportConfig(options, pkg);
-  data.clean = {spm: ['.build']};
+  data.clean = {spm: ['.build'], dist: ['dist']};
 
   // deepMerge should merge to target
   if (deepMerge) {
@@ -45,6 +45,8 @@ function initConfig(grunt, options, deepMerge) {
 
   grunt.registerTask(
     'spm-build', [
+      'clean:dist', // delete dist direcotry first
+
       // build css
       'transport:spm',  // src/* -> .build/src/*
       'concat:css',   // .build/src/*.css -> .build/dist/*.css
