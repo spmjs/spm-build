@@ -157,9 +157,8 @@ exports.transportConfig = transportConfig;
 
 function distConfig(options, pkg) {
   if (!pkg.spm) {
-    console.log('  invalid package.json');
-    console.log();
-    console.log('  read the docs at http://docs.spmjs.org/en/package');
+    process.emit('log.warn', 'missing `spm` in package.json');
+    process.emit('log.info', 'read the docs at http://docs.spmjs.org/en/package');
     process.exit(1);
   }
   var output = pkg.spm.output;
