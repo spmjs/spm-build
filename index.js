@@ -108,7 +108,10 @@ function transportConfig(options, pkg) {
   options.format = options.format || pkg.spm.format;
   var spmConfig = {
     options: {
-      pkg: pkg
+      pkg: pkg,
+      process: {
+        data: {pkg: pkg}
+      }
     },
     files: [{
       cwd: options.source || 'src',

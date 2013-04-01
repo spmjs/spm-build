@@ -96,6 +96,6 @@ grunt.registerTask('default', ['spm-build'])
 
 ## Changelog
 
-**2013-03-22** `0.2.0b1`
+**April 1st, 2013** `0.2.0`
 
-The beta version.
+The version.
