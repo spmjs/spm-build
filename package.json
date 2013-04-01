@@ -1,22 +1,22 @@
 {
   "name": "grunt-spm-build",
   "description": "grunt tasks for spm build.",
-  "version": "0.2.0b2",
+  "version": "0.2.0",
   "homepage": "https://github.com/spmjs/grunt-spm-build",
   "author": {
     "name": "Hsiaoming Yang",
     "email": "lepture@me.com"
   },
   "dependencies": {
-    "grunt-cmd-transport": "~0.1.0b1",
-    "grunt-cmd-concat": "~0.1.0b1",
+    "grunt-cmd-transport": "~0.1.0",
+    "grunt-cmd-concat": "~0.1.0",
     "grunt-contrib-uglify": "~0.1.2",
     "grunt-contrib-copy": "~0.4.0",
     "grunt-contrib-cssmin": "~0.5.0",
     "grunt-contrib-clean": "~0.4.0"
   },
   "peerDependencies": {
-    "grunt": "~0.4.1"
+    "grunt": "~0.4.0"
   },
   "repository": {
     "type": "git",
@@ -27,8 +27,7 @@
   },
   "licenses": [
     {
-      "type": "MIT",
-      "url": "https://github.com/spmjs/grunt-spm-build/blob/master/LICENSE-MIT"
+      "type": "MIT"
     }
   ],
   "engines": {
@@ -38,10 +37,9 @@
     "grunt-contrib-jshint": "0.1.1",
     "grunt": "0.4.0"
   },
-  "peerDependencies": {
-    "grunt": "~0.4.0"
-  },
   "keywords": [
-    "gruntplugin", "spmplugin", "gruntcollection"
+    "gruntplugin",
+    "spmplugin",
+    "gruntcollection"
   ]
 }
