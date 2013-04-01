@@ -101,6 +101,9 @@ exports.initConfig = initConfig;
 function transportConfig(options, pkg) {
   options = options || {};
   pkg = pkg || {spm: {}};
+  if (!pkg.spm) {
+    pkg.spm = {};
+  }
   options.source = options.source || pkg.spm.source;
   options.format = options.format || pkg.spm.format;
   var spmConfig = {
