@@ -8,7 +8,7 @@
       "base": "alice/base/1.0.0/base.css"
     },
     "output": {
-      "alias.js": ["alias.js"],
+      "alias.js": ["alias.js", "relative.js"],
       "relative.js": ["relative.js"],
       "foo.css": ["foo.css"],
       "i18n/*": ["i18n/*"]
