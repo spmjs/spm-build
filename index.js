@@ -174,7 +174,7 @@ function distConfig(options, pkg) {
   var output = pkg.spm.output || {};
 
   var jsconcats = {};
-  var jsmins = {}, cssmins = {};
+  var jsmins = [], cssmins = [];
   var copies = [];
 
   if (Array.isArray(output)) {
@@ -188,8 +188,11 @@ function distConfig(options, pkg) {
   Object.keys(output).forEach(function(name) {
     if (name.indexOf('*') === -1) {
       if (/\.css$/.test(name)) {
-        cssmins['dist/' + name] = output[name].map(function(key) {
-          return '.build/dist/' + key;
+        cssmins.push({
+          dest: 'dist/' + name,
+          src: output[name].map(function(key) {
+            return '.build/dist/' + key;
+          })
         });
 
         // copy debug css
@@ -207,7 +210,10 @@ function distConfig(options, pkg) {
           return '.build/src/' + key;
         });
 
-        jsmins['dist/' + name] = ['.build/dist/' + name];
+        jsmins.push({
+          src: ['.build/dist/' + name],
+          dest: 'dist/' + name
+        });
 
         // create debugfile
         jsconcats['dist/' + name.replace(/\.js$/, '-debug.js')] = output[name].map(function(key) {
@@ -225,6 +231,45 @@ function distConfig(options, pkg) {
       copies.push({
         cwd: '.build/src',
         src: name,
+        filter: function(src) {
+          if (/-debug\.(js|css)$/.test(src)) {
+            return true;
+          };
+          if (/\.(js|css)$/.test(src)) {
+            return false;
+          }
+          return true;
+        },
+        expand: true,
+        dest: 'dist'
+      });
+      jsmins.push({
+        cwd: '.build/src',
+        src: name,
+        filter: function(src) {
+          if (/-debug.js$/.test(src)) {
+            return false;
+          };
+          if (/\.js$/.test(src)) {
+            return true;
+          }
+          return false;
+        },
+        expand: true,
+        dest: 'dist'
+      });
+      cssmins.push({
+        cwd: '.build/src',
+        src: name,
+        filter: function(src) {
+          if (/-debug.css$/.test(src)) {
+            return false;
+          };
+          if (/\.css$/.test(src)) {
+            return true;
+          }
+          return false;
+        },
         expand: true,
         dest: 'dist'
       });

@@ -7,6 +7,11 @@
       "class": "arale/class/1.0.0/class",
       "base": "alice/base/1.0.0/base.css"
     },
-    "output": ["alias.js", "relative.js", "foo.css", "i18n/*"]
+    "output": {
+      "alias.js": ["alias.js"],
+      "relative.js": ["relative.js"],
+      "foo.css": ["foo.css"],
+      "i18n/*": ["i18n/*"]
+    }
   }
 }
