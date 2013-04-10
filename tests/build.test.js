@@ -1,0 +1,1 @@
+var build = require('..');
