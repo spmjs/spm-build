@@ -50,15 +50,16 @@ function initConfig(grunt, options, deepMerge) {
       // build css
       'transport:spm',  // src/* -> .build/src/*
       'concat:css',   // .build/src/*.css -> .build/dist/*.css
-      'cssmin:css',   // .build/dist/*.css -> dist/*.css
 
       // build js (must be invoke after css build)
       'transport:css',  // .build/dist/*.css -> .build/src/*.css.js
       'concat:js',  // .build/src/* -> .build/dist/*.js
+
+      // to dist
+      'copy:spm',
+      'cssmin:css',   // .build/dist/*.css -> dist/*.css
       'uglify:js',  // .build/dist/*.js -> dist/*.js
 
-      // resource
-      'copy:spm',
       'clean:spm',
       'newline'
   ]);
@@ -167,19 +168,29 @@ function distConfig(options, pkg) {
   if (!pkg.spm) {
     process.emit('log.warn', 'missing `spm` in package.json');
     process.emit('log.info', 'read the docs at http://docs.spmjs.org/en/package');
-    process.exit(1);
+    pkg.spm = {};
   }
-  var output = pkg.spm.output;
+
+  var output = pkg.spm.output || {};
 
   var jsconcats = {};
   var jsmins = {}, cssmins = {};
-
   var copies = [];
 
-  output.forEach(function(name) {
+  if (Array.isArray(output)) {
+    var ret = {};
+    output.forEach(function(name) {
+      ret[name] = [name];
+    });
+    output = ret;
+  }
+
+  Object.keys(output).forEach(function(name) {
     if (name.indexOf('*') === -1) {
       if (/\.css$/.test(name)) {
-        cssmins['dist/' + name] = ['.build/dist/' + name];
+        cssmins['dist/' + name] = output[name].map(function(key) {
+          return '.build/dist/' + key;
+        });
 
         // copy debug css
         name = name.replace(/\.css$/, '-debug.css');
@@ -192,13 +203,16 @@ function distConfig(options, pkg) {
 
       } else if (/\.js$/.test(name)) {
         // concat js
-        jsconcats['.build/dist/' + name] = ['.build/src/' + name];
+        jsconcats['.build/dist/' + name] = output[name].map(function(key) {
+          return '.build/src/' + key;
+        });
 
         jsmins['dist/' + name] = ['.build/dist/' + name];
 
         // create debugfile
-        name = name.replace(/\.js$/, '-debug.js');
-        jsconcats['dist/' + name] = ['.build/src/' + name];
+        jsconcats['dist/' + name.replace(/\.js$/, '-debug.js')] = output[name].map(function(key) {
+          return '.build/src/' + key.replace(/\.js$/, '-debug.js');
+        });
       } else {
         copies.push({
           cwd: '.build/src',
