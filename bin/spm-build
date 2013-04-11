@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 
 var commander = require('commander');
-require('colorful').colorful();
-var spm = require('..');
+var runner = require('..');
 
 commander.usage('[options]');
 
@@ -17,26 +16,23 @@ commander
 
 commander.on('--help', function() {
   console.log();
-  console.log('  ' + 'Examples:'.to.bold.blue.color);
+  console.log('  ' + 'Examples:'.bold.blue);
   console.log();
   console.log('   Build a standard cmd module is simple');
   console.log();
-  console.log('   $ ' + 'spm build'.to.magenta.color);
+  console.log('   $ ' + 'spm build'.magenta);
   console.log();
   console.log('   Build from another source');
   console.log();
-  console.log('   $ ' + 'spm build'.to.magenta.color + ' ' + '-I'.to.cyan.color + ' lib ' + '-O'.to.cyan.color + ' dist');
+  console.log('   $ ' + 'spm build'.magenta + ' ' + '-I'.cyan + ' lib ' + '-O'.cyan + ' dist');
   console.log();
-  console.log('   For more information: ' + 'http://docs.spmjs.org/en/build'.to.underline.color);
+  console.log('   For more information: ' + 'http://docs.spmjs.org/en/build'.underline);
   console.log();
 });
 
 
 commander.parse(process.argv);
 
-// verbose vs quiet
-spm.log.config(commander);
-
 // run install
 console.log();
-spm.build(commander);
+runner(commander);
