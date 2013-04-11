@@ -34,7 +34,7 @@ exports = module.exports = function(options) {
   }
 };
 
-exports.loadBuildTasks = function(options, pkg) {
+exports.loadBuildTasks = function(options, pkg, deepMerge) {
   grunt.log.writeln('load spm-build');
   options = options || {};
   pkg = pkg || grunt.file.readJSON('package.json');
@@ -44,7 +44,7 @@ exports.loadBuildTasks = function(options, pkg) {
   config.dest = options.outputDirectory || 'dist';
   config.paths = options.paths || ['sea-modules'];
 
-  require('./lib/config').initConfig(grunt, config);
+  require('./lib/config').initConfig(grunt, config, deepMerge);
 
   [
     'grunt-cmd-transport',
