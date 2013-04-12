@@ -50,7 +50,7 @@ exports = module.exports = function(options) {
           'uglify:js',  // .build/dist/*.js -> dist/*.js
 
           'clean:spm',
-          'newline'
+          'spm-newline'
       ]);
 
     });
@@ -117,7 +117,7 @@ function loadTasks() {
     }
   });
 
-  grunt.registerTask('newline', function() {
+  grunt.registerTask('spm-newline', function() {
     grunt.file.recurse('dist', function(f) {
       var extname = path.extname(f);
       if (extname === '.js' || extname === '.css') {

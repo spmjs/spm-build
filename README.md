@@ -6,7 +6,7 @@
 
 spm build is designed to build standard cmd modules.
 
-**自定义构建，请不要用这个库**
+**自定义构建，请不要用这个库，除非你清楚自己在做什么！**
 
 
 ## Standard Module
@@ -35,4 +35,21 @@ Install spm-build with npm:
     $ npm install spm-build -g
 
 
-## Usage
+## API
+
+```
+var builder = require('spm-build')
+```
+
+### builder.loadTasks()
+
+It will load all tasks of the default build. Including:
+
+- grunt-cmd-transport
+- grunt-cmd-concat
+- grunt-contrib-uglify
+- grunt-contrib-copy
+- grunt-contrib-cssmin
+- grunt-contrib-clean
+- spm-install
+- spm-newline
