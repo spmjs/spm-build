@@ -12,7 +12,7 @@ exports = module.exports = function(options) {
     grunt.log.writeln('info ' + msg);
   });
 
-  options = parseOptions(options)
+  options = parseOptions(options);
 
   var scripts = options.pkg.scripts || {};
   if (scripts.build) {
@@ -60,9 +60,10 @@ exports = module.exports = function(options) {
 Object.defineProperty(exports, 'config', {
   get: function() {
     var options = parseOptions();
-    return getConfig(options)
+    return getConfig(options);
   }
 });
+
 exports.getConfig = getConfig;
 
 function parseOptions(options) {
@@ -87,7 +88,7 @@ function parseOptions(options) {
   options.src = options.inputDirectory || 'src';
   options.dest = options.outputDirectory || 'dist';
   return options;
-};
+}
 
 function loadTasks() {
 
@@ -106,27 +107,7 @@ function loadTasks() {
     }
   });
 
-  // register spm install tasks
-  grunt.registerTask('spm-install', function() {
-    var done = this.async();
-    try {
-      var spm = require('spm');
-      spm.install({query: []}, done);
-    } catch (e) {
-      grunt.log.warn('spm ' + e.message || e);
-    }
-  });
-
-  grunt.registerTask('spm-newline', function() {
-    grunt.file.recurse('dist', function(f) {
-      var extname = path.extname(f);
-      if (extname === '.js' || extname === '.css') {
-        var text = grunt.file.read(f);
-        if (!/\n$/.test(text)) {
-          grunt.file.write(f, text + '\n');
-        }
-      }
-    });
-  });
+  grunt.loadTasks(path.join(__dirname, 'tasks'));
 }
+
 exports.loadTasks = loadTasks;
