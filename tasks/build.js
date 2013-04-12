@@ -7,6 +7,7 @@ module.exports = function(grunt) {
       spm.install({query: []}, done);
     } catch (e) {
       grunt.log.warn('spm ' + e.message || e);
+      done();
     }
   });
 

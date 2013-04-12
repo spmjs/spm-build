@@ -33,7 +33,8 @@
     "spm-build": "bin/spm-build"
   },
   "keywords": [
-    "spmplugin"
+    "spmplugin",
+    "gruntcollection"
   ],
   "scripts": {
     "postinstall": "node scripts/postinstall.js",
