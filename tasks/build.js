@@ -1,4 +1,6 @@
 module.exports = function(grunt) {
+  var path = require('path');
+
   // register spm install tasks
   grunt.registerTask('spm-install', function() {
     var done = this.async();
