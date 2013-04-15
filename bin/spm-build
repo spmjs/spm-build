@@ -4,6 +4,7 @@ var commander = require('commander');
 var runner = require('..');
 
 commander.usage('[options]');
+commander.version(require('../package').version)
 
 commander
   .option('-I, --input-directory <dir>', 'input directory: [src]')
