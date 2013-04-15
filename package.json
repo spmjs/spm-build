@@ -36,6 +36,9 @@
     "spmplugin",
     "gruntcollection"
   ],
+  "engines": {
+    "node": ">0.8.19"
+  },
   "scripts": {
     "postinstall": "node scripts/postinstall.js",
     "uninstall": "node scripts/uninstall.js"

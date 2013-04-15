@@ -25,7 +25,7 @@ dist/
   module-name.js   <-- will be created by spm-build
 ```
 
-Learn more on [package.json](docs.spmjs.org/en/package).
+Learn more on [package.json](http://docs.spmjs.org/en/package).
 
 
 ## Install
