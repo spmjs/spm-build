@@ -53,3 +53,14 @@ It will load all tasks of the default build. Including:
 - grunt-contrib-clean
 - spm-install
 - spm-newline
+
+
+## Changelog
+
+**April 16, 2013** `0.1.1`
+
+Update dependencies.
+
+**April 15, 2013** `0.1.0`
+
+First version.
