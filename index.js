@@ -16,6 +16,9 @@ exports = module.exports = function(options) {
 
   var scripts = options.pkg.scripts || {};
   if (scripts.build) {
+    if (scripts.build.trim() === 'spm build') {
+      throw new Error('spm build error');
+    }
     childexec(scripts.build, function() {
       grunt.log.writeln('success build finished.');
     });
