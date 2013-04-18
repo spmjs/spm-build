@@ -8,6 +8,10 @@ spm build is designed to build standard cmd modules.
 
 **自定义构建，请不要用这个库，除非你清楚自己在做什么！**
 
+Customized building should use these grunt tasks:
+
+- https://github.com/spmjs/grunt-cmd-transport
+- https://github.com/spmjs/grunt-cmd-concat
 
 ## Standard Module
 
@@ -53,6 +57,10 @@ It will load all tasks of the default build. Including:
 - grunt-contrib-clean
 - spm-install
 - spm-newline
+
+If you are using `spm-build` to run the grunt task, you can also load these tasks with:
+
+    grunt.loadGlobalTasks('spm-build')
 
 
 ## Changelog
