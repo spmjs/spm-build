@@ -88,8 +88,6 @@ function parseOptions(options) {
   var globalpath = path.join(spmrc.get('user.home'), '.spm', 'sea-modules');
   options.paths.push(globalpath);
 
-  options.src = options.inputDirectory || 'src';
-  options.dest = options.outputDirectory || 'dist';
   return options;
 }
 

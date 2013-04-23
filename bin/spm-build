@@ -7,12 +7,13 @@ commander.usage('[options]');
 commander.version(require('../package').version)
 
 commander
-  .option('-I, --input-directory <dir>', 'input directory: [src]')
-  .option('-O, --output-directory <dir>', 'output directory: [dist]')
+  .option('-I, --input-directory [dir]', 'input directory: [src]')
+  .option('-O, --output-directory [dir]', 'output directory: [dist]')
   .option('-v, --verbose', 'show more logs')
   .option('-q, --quiet', 'show less logs')
   .option('-f, --force', 'force to build')
-  .option('--encoding <encoding>', 'file encoding: [utf8]')
+  .option('--include [keyword]', 'include option for concat task: [relative]')
+  .option('--encoding [encoding]', 'file encoding: [utf8]')
   .option('--no-color', 'disable colorful print');
 
 
@@ -37,4 +38,13 @@ commander.parse(process.argv);
 
 // run install
 console.log();
-runner(commander);
+var config = {};
+config.src = commander.inputDirectory || 'src';
+config.dest = commander.outputDirectory || 'dist';
+config.quiet = commander.quiet;
+config.force = commander.force;
+config.verbose = commander.verbose;
+config.include = commander.include || 'relative';
+config.encoding = commander.encoding;
+config.color = commander.color;
+runner(config);
