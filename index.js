@@ -35,24 +35,27 @@ exports = module.exports = function(options) {
 
       grunt.registerInitTask(
         'build', [
-          'clean:dist', // delete dist direcotry first
+          'clean:build', // delete build direcotry first
 
           'spm-install', // install dependencies
 
           // build css
-          'transport:spm',  // src/* -> .build/src/*
+          'transport:src',  // src/* -> .build/src/*
           'concat:css',   // .build/src/*.css -> .build/dist/*.css
 
           // build js (must be invoke after css build)
           'transport:css',  // .build/dist/*.css -> .build/src/*.css.js
           'concat:js',  // .build/src/* -> .build/dist/*.js
 
-          // to dist
-          'copy:spm',
-          'cssmin:css',   // .build/dist/*.css -> dist/*.css
-          'uglify:js',  // .build/dist/*.js -> dist/*.js
+          // to ./build/dist
+          'copy:build',
+          'cssmin:css',   // .build/tmp/*.css -> .build/dist/*.css
+          'uglify:js',  // .build/tmp/*.js -> .build/dist/*.js
 
-          'clean:spm',
+          'clean:dist',
+          'copy:dist',  // .build/dist -> dist
+          'clean:build',
+
           'spm-newline'
       ]);
 
