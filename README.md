@@ -65,6 +65,11 @@ If you are using `spm-build` to run the grunt task, you can also load these task
 
 ## Changelog
 
+**April 23, 2013** `0.1.2`
+
+- Update dependencies.
+- Show error on postinstall scripts.
+
 **April 16, 2013** `0.1.1`
 
 Update dependencies.
