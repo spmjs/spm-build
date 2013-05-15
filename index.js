@@ -3,6 +3,8 @@ var spmrc = require('spmrc');
 var grunt = require('spm-grunt');
 var getConfig = require('./lib/config').getConfig;
 
+var _cache;
+
 exports = module.exports = function(options) {
 
   process.on('log.warn', function(msg) {
@@ -11,6 +13,7 @@ exports = module.exports = function(options) {
   process.on('log.info', function(msg) {
     grunt.log.writeln('info ' + msg);
   });
+  _cache = options;
 
   options = parseOptions(options);
 
@@ -65,7 +68,7 @@ exports = module.exports = function(options) {
 
 Object.defineProperty(exports, 'config', {
   get: function() {
-    var options = parseOptions();
+    var options = parseOptions(_cache);
     return getConfig(options);
   }
 });
