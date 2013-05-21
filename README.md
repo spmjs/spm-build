@@ -65,6 +65,10 @@ If you are using `spm-build` to run the grunt task, you can also load these task
 
 ## Changelog
 
+**May 21, 2013** `0.3.1`
+
+- Pass options from command line to config
+
 **May 5, 2013** `0.3.0`
 
 - Update dependencies.
