@@ -39,7 +39,7 @@ commander.parse(process.argv);
 // run install
 console.log();
 var config = {};
-config.src = commander.inputDirectory || 'src';
+config.src = commander.inputDirectory;
 config.dest = commander.outputDirectory || 'dist';
 config.quiet = commander.quiet;
 config.force = commander.force;
