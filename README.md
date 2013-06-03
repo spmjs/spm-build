@@ -65,6 +65,11 @@ If you are using `spm-build` to run the grunt task, you can also load these task
 
 ## Changelog
 
+**Jun 03, 2013** `0.3.2`
+
+- Fix `source` option in package.json
+- Update dependencies
+
 **May 21, 2013** `0.3.1`
 
 - Pass options from command line to config
