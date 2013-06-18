@@ -65,6 +65,10 @@ If you are using `spm-build` to run the grunt task, you can also load these task
 
 ## Changelog
 
+**Jun 18, 2013** `0.3.3`
+
+- Update dependencies
+
 **Jun 03, 2013** `0.3.2`
 
 - Fix `source` option in package.json
