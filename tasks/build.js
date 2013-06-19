@@ -15,6 +15,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('spm-newline', function() {
     grunt.file.recurse('dist', function(f) {
+      grunt.log.writeln('create ' + f);
       var extname = path.extname(f);
       if (extname === '.js' || extname === '.css') {
         var text = grunt.file.read(f);
