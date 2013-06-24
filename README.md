@@ -65,6 +65,10 @@ If you are using `spm-build` to run the grunt task, you can also load these task
 
 ## Changelog
 
+**Jun 24, 2013** `0.3.4`
+
+- force option for spm.install
+
 **Jun 18, 2013** `0.3.3`
 
 - Update dependencies
