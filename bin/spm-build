@@ -4,7 +4,7 @@ var commander = require('commander');
 var runner = require('..');
 
 commander.usage('[options]');
-commander.version(require('../package').version)
+commander.version(require('../package').version);
 
 commander
   .option('-I, --input-directory [dir]', 'input directory: [src]')
@@ -44,7 +44,7 @@ config.dest = commander.outputDirectory || 'dist';
 config.quiet = commander.quiet;
 config.force = commander.force;
 config.verbose = commander.verbose;
-config.include = commander.include || 'relative';
+config.include = commander.include;
 config.encoding = commander.encoding;
 config.color = commander.color;
 runner(config);
