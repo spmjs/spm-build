@@ -7,14 +7,23 @@ module.exports = function(grunt) {
     var options = this.options({
       force: false
     });
+
+    var spm;
     try {
-      var spm = require('spm');
+      spm = require('spm');
+    } catch (e) {
+      grunt.log.warn('spm ' + e.message || e);
+    }
+
+    if (spm) {
       spm.install({
         query: [],
         force: options.force
-      }, done);
-    } catch (e) {
-      grunt.log.warn('spm ' + e.message || e);
+      }, function(err) {
+        if (err && !(err instanceof Error)) err = new Error(err);
+        done(err);
+      });
+    } else {
       done();
     }
   });
