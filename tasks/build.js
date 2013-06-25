@@ -20,8 +20,11 @@ module.exports = function(grunt) {
         query: [],
         force: options.force
       }, function(err) {
-        if (err && !(err instanceof Error)) err = new Error(err);
-        done(err);
+        if (err) {
+          console.log();
+          grunt.fail.warn(err);
+        }
+        done();
       });
     } else {
       done();
