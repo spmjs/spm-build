@@ -4,11 +4,26 @@ module.exports = function(grunt) {
   // register spm install tasks
   grunt.registerTask('spm-install', function() {
     var done = this.async();
+    var options = this.options({
+      force: false
+    });
+
+    var spm;
     try {
-      var spm = require('spm');
-      spm.install({query: []}, done);
+      spm = require('spm');
     } catch (e) {
       grunt.log.warn('spm ' + e.message || e);
+    }
+
+    if (spm) {
+      spm.install({
+        query: [],
+        force: options.force
+      }, function(err) {
+        if (err && !(err instanceof Error)) err = new Error(err);
+        done(err);
+      });
+    } else {
       done();
     }
   });
