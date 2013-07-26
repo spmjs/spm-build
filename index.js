@@ -17,7 +17,17 @@ exports = module.exports = function(options) {
 
   options = parseOptions(options);
 
-  var scripts = options.pkg.scripts || {};
+  var pkg = options.pkg;
+
+  // check pkg
+  if (!pkg.spm) {
+    throw new Error('spm is required in package.json');
+  }
+  if (!pkg.spm.output) {
+    throw new Error('spm.output is required in package.json');
+  }
+
+  var scripts = pkg.scripts || {};
   if (scripts.build) {
     if (scripts.build.trim() === 'spm build') {
       throw new Error('spm build error');
