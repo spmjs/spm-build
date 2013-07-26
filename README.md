@@ -65,6 +65,15 @@ If you are using `spm-build` to run the grunt task, you can also load these task
 
 ## Changelog
 
+**Jun 26, 2013** `0.3.6`
+
+support styleBox option
+
+**Jun 25, 2013** `0.3.5`
+
+- support include config
+- install will throw exception
+
 **Jun 24, 2013** `0.3.4`
 
 - force option for spm.install
