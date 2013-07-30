@@ -65,6 +65,10 @@ If you are using `spm-build` to run the grunt task, you can also load these task
 
 ## Changelog
 
+**Jul 30, 2013** `0.3.7`
+
+export parseOptions
+
 **Jun 26, 2013** `0.3.6`
 
 support styleBox option
