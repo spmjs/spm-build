@@ -84,9 +84,10 @@ Object.defineProperty(exports, 'config', {
 });
 
 exports.getConfig = getConfig;
+exports.parseOptions = parseOptions;
 
 function parseOptions(options) {
-  options = options || {};
+  options = options || _cache || {};
 
   var pkgfile = options.pkgfile || 'package.json';
   var pkg = {};
