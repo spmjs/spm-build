@@ -65,6 +65,10 @@ If you are using `spm-build` to run the grunt task, you can also load these task
 
 ## Changelog
 
+**Aug 15, 2013** `0.3.8`
+
+Update dependencies
+
 **Jul 30, 2013** `0.3.7`
 
 export parseOptions
