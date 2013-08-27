@@ -65,6 +65,10 @@ If you are using `spm-build` to run the grunt task, you can also load these task
 
 ## Changelog
 
+**Aug 15, 2013** `0.3.9`
+
+Fix #34
+
 **Aug 15, 2013** `0.3.8`
 
 Update dependencies
