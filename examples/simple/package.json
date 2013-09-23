@@ -1,0 +1,11 @@
+{
+  "family": "arale",
+  "name": "test",
+  "version": "1.0.0",
+  "spm": {
+    "alias": {
+      "class": "arale/class/1.0.0/class"
+    },
+    "output": ["a.js", "b.js"]
+  }
+}
