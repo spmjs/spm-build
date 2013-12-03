@@ -32,6 +32,7 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('spm-newline', function() {
+    if (!require('fs').existsSync('dist')) return;
     grunt.file.recurse('dist', function(f) {
       grunt.log.writeln('create ' + f);
       var extname = path.extname(f);
