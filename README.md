@@ -65,6 +65,10 @@ If you are using `spm-build` to run the grunt task, you can also load these task
 
 ## Changelog
 
+**Jan 24th, 2013** `0.3.13`
+
+Lock grunt-contrib-uglify's version to avoid uglify-js being update to high version.
+
 **Sep 5th, 2013** `0.3.10`
 
 Update dependencies

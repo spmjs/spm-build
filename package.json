@@ -1,7 +1,7 @@
 {
   "name": "spm-build",
   "description": "build the standard cmd module",
-  "version": "0.3.12",
+  "version": "0.3.13",
   "homepage": "https://github.com/spmjs/spm-build",
   "repository": {
     "type": "git",
@@ -21,7 +21,7 @@
     "commander": "~1.1.1",
     "grunt-cmd-transport": "~0.3.0",
     "grunt-cmd-concat": "~0.2.5",
-    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-uglify": "0.2.2",
     "grunt-contrib-copy": "~0.4.1",
     "grunt-contrib-cssmin": "~0.6.1",
     "grunt-contrib-clean": "~0.5.0",
