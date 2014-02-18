@@ -93,7 +93,7 @@ function parseOptions(options) {
   var pkg = {};
 
   if (grunt.file.exists(pkgfile)) {
-    pkg = grunt.file.readJSON('package.json');
+    pkg = grunt.file.readJSON(pkgfile);
   }
   options.pkg = pkg;
 
