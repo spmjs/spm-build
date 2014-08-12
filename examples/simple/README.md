@@ -3,7 +3,7 @@
 ## 安装
 
 ```
-$ npm install spm -g
+$ npm install spm@2.x -g
 $ npm install spm-build -g
 ```
 

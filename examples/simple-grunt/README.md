@@ -12,7 +12,7 @@ $ npm install
 安装 spm，可以用来下模块
 
 ```
-$ npm install spm -g
+$ npm install spm@2.x -g
 ```
 
 ## 使用说明
