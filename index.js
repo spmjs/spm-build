@@ -27,53 +27,42 @@ exports = module.exports = function(options) {
     throw new Error('spm.output is required in package.json');
   }
 
-  var scripts = pkg.scripts || {};
-  if (scripts.build) {
-    if (scripts.build.trim() === 'spm build') {
-      throw new Error('spm build error');
-    }
-    childexec(scripts.build, function() {
+  grunt.invokeTask('build', options, function(grunt) {
+
+    var config = getConfig(options);
+    grunt.initConfig(config);
+    loadTasks();
+
+    grunt.task.options({'done': function() {
       grunt.log.writeln('success build finished.');
-    });
-  } else {
-    grunt.invokeTask('build', options, function(grunt) {
+    }});
 
-      var config = getConfig(options);
-      grunt.initConfig(config);
-      loadTasks();
+    grunt.registerInitTask(
+      'build', [
+        'clean:build', // delete build direcotry first
 
-      grunt.task.options({'done': function() {
-        grunt.log.writeln('success build finished.');
-      }});
+        'spm-install', // install dependencies
 
-      grunt.registerInitTask(
-        'build', [
-          'clean:build', // delete build direcotry first
+        // build css
+        'transport:src',  // src/* -> .build/src/*
+        'concat:css',   // .build/src/*.css -> .build/tmp/*.css
 
-          'spm-install', // install dependencies
+        // build js (must be invoke after css build)
+        'transport:css',  // .build/tmp/*.css -> .build/src/*.css.js
+        'concat:js',  // .build/src/* -> .build/dist/*.js
 
-          // build css
-          'transport:src',  // src/* -> .build/src/*
-          'concat:css',   // .build/src/*.css -> .build/tmp/*.css
+        // to ./build/dist
+        'copy:build',
+        'cssmin:css',   // .build/tmp/*.css -> .build/dist/*.css
+        'uglify:js',  // .build/tmp/*.js -> .build/dist/*.js
 
-          // build js (must be invoke after css build)
-          'transport:css',  // .build/tmp/*.css -> .build/src/*.css.js
-          'concat:js',  // .build/src/* -> .build/dist/*.js
+        'clean:dist',
+        'copy:dist',  // .build/dist -> dist
+        'clean:build',
 
-          // to ./build/dist
-          'copy:build',
-          'cssmin:css',   // .build/tmp/*.css -> .build/dist/*.css
-          'uglify:js',  // .build/tmp/*.js -> .build/dist/*.js
-
-          'clean:dist',
-          'copy:dist',  // .build/dist -> dist
-          'clean:build',
-
-          'spm-newline'
-      ]);
-
-    });
-  }
+        'spm-newline'
+    ]);
+  });
 };
 
 Object.defineProperty(exports, 'config', {

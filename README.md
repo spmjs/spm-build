@@ -67,6 +67,10 @@ If you are using `spm-build` to run the grunt task, you can also load these task
 
 ## Changelog
 
+**Sep 9th, 2014** `0.4.0`
+
+Remove running scripts in package.json
+
 **Oct 11th, 2013** `0.3.19`
 
 just warn when output not found
