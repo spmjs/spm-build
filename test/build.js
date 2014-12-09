@@ -148,6 +148,21 @@ describe('lib/index.js', function() {
     assert(dest, join(fixtures, '../expected/entry'));
   });
 
+  it('force', function* () {
+    var fakeFile = join(dest, 'a.js');
+    fs.mkdirSync(dest);
+    fs.writeFileSync(fakeFile);
+
+    yield *build({
+      cwd: join(fixtures, 'normal'),
+      dest: dest,
+      isForce: true,
+      isInstall: false
+    });
+
+    fs.existsSync(fakeFile).should.be.false;
+  });
+
 });
 
 function assert(actual, expect) {
