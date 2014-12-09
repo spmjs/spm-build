@@ -28,7 +28,7 @@
   "devDependencies": {
     "co-mocha": "~1.1.0",
     "coveralls": "2",
-    "istanbul": "0",
+    "istanbul-harmony": "0",
     "mocha": "1",
     "should": "3",
     "sinon": "~1.12.1"
