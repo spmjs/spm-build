@@ -7,7 +7,7 @@ var program = require('commander');
 var co = require('co');
 var log = require('spm-log');
 var join = require('path').join;
-var build = require('../lib/');
+var build = require('../lib/build');
 
 program
   .option('-I, --input-directory <dir>', 'input directory, default: current working directory')

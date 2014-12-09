@@ -7,7 +7,7 @@ var join = require('path').join;
 var sinon = require('sinon');
 var log = require('spm-log');
 
-var build = require('../lib/');
+var build = require('../lib/build');
 
 var fixtures = join(__dirname, 'fixtures');
 var dest = join(fixtures, 'tmp');
