@@ -1,0 +1,1 @@
+define("a",["index"],function(n){n("index"),console.log("a@0.1.0")});

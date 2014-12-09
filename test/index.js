@@ -76,6 +76,16 @@ describe('lib/index.js', function() {
     assert(dest, join(fixtures, '../expected/normal-umd'));
   });
 
+  it('normal empty idleading', function* () {
+    yield *build({
+      cwd: join(fixtures, 'normal'),
+      dest: dest,
+      idleading: '',
+      isInstall: false
+    });
+    assert(dest, join(fixtures, '../expected/normal-empty-idleading'));
+  });
+
   it('nodeps ignore', function* () {
     yield *build({
       cwd: join(fixtures, 'nodeps-ignore'),
