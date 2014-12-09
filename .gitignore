@@ -26,3 +26,4 @@ tmp/
 .yml
 _site
 sea-modules
+coverage
