@@ -1,50 +1,71 @@
-#!/usr/bin/env node
+#!/usr/bin/env node --harmony
 
-var commander = require('commander');
-var runner = require('..');
+'use strict';
 
-commander.usage('[options]');
-commander.version(require('../package').version);
+require('colorful').colorful();
+var program = require('commander');
+var co = require('co');
+var log = require('spm-log');
+var join = require('path').join;
+var build = require('../lib/');
 
-commander
-  .option('-I, --input-directory [dir]', 'input directory: [src]')
-  .option('-O, --output-directory [dir]', 'output directory: [dist]')
-  .option('-v, --verbose', 'show more logs')
-  .option('-q, --quiet', 'show less logs')
-  .option('-f, --force', 'force to build')
-  .option('--include [keyword]', 'include option for concat task: [relative]')
-  .option('--encoding [encoding]', 'file encoding: [utf8]')
-  .option('--no-color', 'disable colorful print');
+program
+  .option('-I, --input-directory <dir>', 'input directory, default: current working directory')
+  .option('-O, --output-directory <dir>', 'output directory, default: dist')
+  .option('--include <include>', 'determine which files will be included, optional: self, relative, all, standalone, umd')
+  .option('--ignore <ignore>', 'determine which id will not be transported')
+  .option('--skip <skip>', 'determine which id will not be parsed when analyse')
+  .option('-f, --force', 'force to clean dest directory first')
+  .option('-r, --registry <url>', 'registry url of yuan server')
+  .option('--idleading [idleading]', 'prefix of module name, default: {{name}}/{{version}}')
+  .option('--with-deps', 'build package in dependencies')
+  .option('--zip', 'archive by zip')
+  .option('--verbose', 'show more logging')
+  .option('--no-color', 'disable colorful print')
+  .option('--no-install', 'disable install')
+  .parse(process.argv);
 
+log.config(program);
 
-commander.on('--help', function() {
-  console.log();
-  console.log('  ' + 'Examples:'.bold.blue);
-  console.log();
-  console.log('   Build a standard cmd module is simple');
-  console.log();
-  console.log('   $ ' + 'spm build'.magenta);
-  console.log();
-  console.log('   Build from another source');
-  console.log();
-  console.log('   $ ' + 'spm build'.magenta + ' ' + '-I'.cyan + ' lib ' + '-O'.cyan + ' dist');
-  console.log();
-  console.log('   For more information: ' + 'http://docs.spmjs.org/en/build'.underline);
-  console.log();
+var cwd = join(process.cwd(), program.inputDirectory || '');
+var pkg = require(join(cwd, 'package.json'));
+
+if (!pkg || !pkg.spm) {
+  log.error('miss', 'package.json or "spm" key');
+  process.exit(2);
+}
+
+var info = ('build ' + pkg.name + '@' + pkg.version).to.magenta.color;
+var begin = Date.now();
+log.info('start', info);
+
+var args = {
+  dest: program.outputDirectory,
+  cwd: cwd,
+
+  include: program.include,
+  ignore: program.ignore,
+  skip: program.skip,
+  idleading: program.idleading,
+  registry: program.registry,
+
+  isZip: program.zip,
+  isForce: program.force,
+  isWithDeps: program.withDeps,
+  isInstall: program.install
+};
+
+co(function* (){
+  yield* build(args);
+}).then(function() {
+  log.info('finish', info + showDiff(begin));
+}, function (err) {
+  log.error(err.message);
+  log.error(err.stack);
+  process.exit(1);
 });
 
-
-commander.parse(process.argv);
-
-// run install
-console.log();
-var config = {};
-config.src = commander.inputDirectory;
-config.dest = commander.outputDirectory || 'dist';
-config.quiet = commander.quiet;
-config.force = commander.force;
-config.verbose = commander.verbose;
-config.include = commander.include;
-config.encoding = commander.encoding;
-config.color = commander.color;
-runner(config);
+function showDiff(time) {
+  var diff = Date.now() - time;
+  return (' (' + diff + 'ms)').to.gray.color;
+}
