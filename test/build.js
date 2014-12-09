@@ -138,6 +138,16 @@ describe('lib/index.js', function() {
       '{"name":"a","version":"0.1.0","spm":{}}\n', 'utf-8');
   });
 
+  it('entry', function* () {
+    yield *build({
+      cwd: join(fixtures, 'entry'),
+      dest: dest,
+      isInstall: false,
+      entry: ['a.js']
+    });
+    assert(dest, join(fixtures, '../expected/entry'));
+  });
+
 });
 
 function assert(actual, expect) {

@@ -7,6 +7,8 @@ var program = require('commander');
 var co = require('co');
 var log = require('spm-log');
 var join = require('path').join;
+var exists = require('fs').existsSync;
+var readFile = require('fs').readFileSync;
 var build = require('../lib/build');
 
 program
@@ -28,14 +30,20 @@ program
 log.config(program);
 
 var cwd = join(process.cwd(), program.inputDirectory || '');
-var pkg = require(join(cwd, 'package.json'));
+var file = join(cwd, 'package.json');
+var pkg = exists(file) && JSON.parse(readFile(file, 'utf-8'));
+var entry = program.args;
 
-if (!pkg || !pkg.spm) {
+var info = '';
+if (entry.length) {
+  info = 'build ' + entry.join(',');
+} else if (!pkg || !pkg.spm) {
   log.error('miss', 'package.json or "spm" key');
   process.exit(2);
+} else {
+  info = ('build ' + pkg.name + '@' + pkg.version).to.magenta.color;
 }
 
-var info = ('build ' + pkg.name + '@' + pkg.version).to.magenta.color;
 var begin = Date.now();
 log.info('start', info);
 
@@ -52,7 +60,9 @@ var args = {
   isZip: program.zip,
   isForce: program.force,
   isWithDeps: program.withDeps,
-  isInstall: program.install
+  isInstall: program.install,
+
+  entry: entry
 };
 
 co(function* (){

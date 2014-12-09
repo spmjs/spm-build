@@ -1,0 +1,1 @@
+define("a/0.1.0/a",[],function(){console.log("a.js")});

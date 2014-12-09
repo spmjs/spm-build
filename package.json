@@ -5,10 +5,12 @@
   "main": "index",
   "dependencies": {
     "ali.gnode": "~0.1.1",
+    "cdeps": "~0.1.0",
     "colorful": "~2.1.0",
     "commander": "~2.5.0",
     "extend": "~2.0.0",
     "father": "~0.9.7",
+    "flatten": "0.0.1",
     "glob": "~4.3.1",
     "gulp-cssmin": "~0.1.6",
     "gulp-if": "~1.2.5",
