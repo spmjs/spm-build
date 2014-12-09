@@ -4,6 +4,8 @@ var fs = require('fs');
 var glob = require('glob');
 var rimraf = require('rimraf');
 var join = require('path').join;
+var sinon = require('sinon');
+var log = require('spm-log');
 
 var build = require('../lib/');
 
@@ -97,12 +99,14 @@ describe('lib/index.js', function() {
   });
 
   it('multiple versions', function* () {
+    var logWarn = sinon.spy(log, 'warn');
     yield *build({
       cwd: join(fixtures, 'multiple-versions'),
       dest: dest,
       isInstall: false
     });
     assert(dest, join(fixtures, '../expected/multiple-versions'));
+    logWarn.callCount.should.be.equal(1);
   });
 
   it('css package', function* () {

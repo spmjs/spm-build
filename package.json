@@ -30,7 +30,8 @@
     "coveralls": "2",
     "istanbul": "0",
     "mocha": "1",
-    "should": "3"
+    "should": "3",
+    "sinon": "~1.12.1"
   },
   "repository": {
     "type": "git",
