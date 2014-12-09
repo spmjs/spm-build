@@ -1,0 +1,1 @@
+!function(){var e,n;e=function(){console.log("type")}(),n=function(){console.log("a@0.1.0")}(),"object"==typeof exports?module.exports=n:"function"==typeof define&&(define.cmd||define.amd)?define(function(){return n}):this.a=n}();

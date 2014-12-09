@@ -1,0 +1,1 @@
+!function(){var n;n=function(){console.log("a@0.1.0")}()}();
