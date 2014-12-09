@@ -1,0 +1,1 @@
+define("a/0.1.0/a",["type/0.1.0/b"],function(e){e("type/0.1.0/b"),console.log("a@0.1.0")});

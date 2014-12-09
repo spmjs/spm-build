@@ -1,0 +1,1 @@
+define("type/0.1.0/index",[],function(){console.log("type")});

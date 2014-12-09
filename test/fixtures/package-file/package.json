@@ -1,0 +1,17 @@
+{
+  "name": "a",
+  "version": "0.1.0",
+  "spm": {
+    "output": [
+      "a.js",
+      "a.css",
+      "a.html"
+    ],
+    "dependencies": {
+      "type": "0.1.0"
+    },
+    "cssminOpts": {
+      "noAdvanced": false
+    }
+  }
+}
