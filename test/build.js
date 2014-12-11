@@ -12,6 +12,8 @@ var build = require('../lib/build');
 var fixtures = join(__dirname, 'fixtures');
 var dest = join(fixtures, 'tmp');
 
+log.info = log.warn = function() {};
+
 describe('lib/index.js', function() {
 
   afterEach(function(done) {
@@ -146,6 +148,15 @@ describe('lib/index.js', function() {
       entry: ['a.js']
     });
     assert(dest, join(fixtures, '../expected/entry'));
+  });
+
+  it('copy img', function* () {
+    yield *build({
+      cwd: join(fixtures, 'copy-img'),
+      dest: dest,
+      isInstall: false
+    });
+    assert(dest, join(fixtures, '../expected/copy-img'));
   });
 
   it('force', function* () {
