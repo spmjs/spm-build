@@ -28,7 +28,7 @@
     "vinyl-fs": "~0.3.13"
   },
   "devDependencies": {
-    "co-mocha": "~1.1.0",
+    "co-mocha": "~1.0.0",
     "coveralls": "2",
     "istanbul-harmony": "0",
     "mocha": "1",
