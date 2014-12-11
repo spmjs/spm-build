@@ -46,6 +46,6 @@
     "test": "make test"
   },
   "bin": {
-    "spm-build": "bin/spm-build"
+    "spm-build": "cli.js"
   }
 }

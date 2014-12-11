@@ -9,7 +9,7 @@ var log = require('spm-log');
 var join = require('path').join;
 var exists = require('fs').existsSync;
 var readFile = require('fs').readFileSync;
-var build = require('../lib/build');
+var build = require('./').build;
 
 program
   .option('-I, --input-directory <dir>', 'input directory, default: current working directory')
@@ -65,9 +65,7 @@ var args = {
   entry: entry
 };
 
-co(function* (){
-  yield* build(args);
-}).then(function() {
+co(build(args)).then(function() {
   log.info('finish', info + showDiff(begin));
 }, function (err) {
   log.error(err.message);
