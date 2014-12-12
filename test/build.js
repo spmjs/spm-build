@@ -24,7 +24,7 @@ describe('lib/index.js', function() {
     yield *build({
       cwd: join(fixtures, 'normal'),
       dest: dest,
-      isInstall: false
+      isInstall: true
     });
     assert(dest, join(fixtures, '../expected/normal'));
   });
@@ -153,6 +153,24 @@ describe('lib/index.js', function() {
       entry: ['a.js']
     });
     assert(dest, join(fixtures, '../expected/entry'));
+  });
+
+  describe('entry without pkg', function() {
+
+    afterEach(function() {
+      rimraf.sync(join(fixtures, 'entry-without-pkg/package.json'));
+    });
+
+    it('entry without pkg', function* () {
+      yield *build({
+        cwd: join(fixtures, 'entry-without-pkg'),
+        dest: dest,
+        isInstall: false,
+        entry: ['a.js']
+      });
+      assert(dest, join(fixtures, '../expected/entry-without-pkg'));
+    });
+
   });
 
   it('copy img', function* () {
