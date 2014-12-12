@@ -17,6 +17,7 @@
   "sub": true,
   "strict": true,
   "node": true,
+  "esnext": true,
   "globals": {
     "describe": false,
     "xdescribe": false,

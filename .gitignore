@@ -18,7 +18,6 @@ Thumbs.db
 *.sublime-project
 *.sublime-workspace
 node_modules/
-dist/
 tmp/
 .spm-build
 .buildpath

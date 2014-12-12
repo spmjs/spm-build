@@ -129,15 +129,20 @@ describe('lib/index.js', function() {
     assert(dest, join(fixtures, '../expected/package-file'));
   });
 
-  it('extra deps', function* () {
-    yield *build({
-      cwd: join(fixtures, 'extra-deps'),
-      dest: dest,
-      isInstall: false
+  describe('extra deps', function() {
+    afterEach(function() {
+      fs.writeFileSync(join(fixtures, 'extra-deps/package.json'),
+        '{"name":"a","version":"0.1.0","spm":{}}\n', 'utf-8');
     });
-    assert(dest, join(fixtures, '../expected/extra-deps'));
-    fs.writeFileSync(join(fixtures, 'extra-deps/package.json'),
-      '{"name":"a","version":"0.1.0","spm":{}}\n', 'utf-8');
+
+    it('extra deps', function* () {
+      yield *build({
+        cwd: join(fixtures, 'extra-deps'),
+        dest: dest,
+        isInstall: false
+      });
+      assert(dest, join(fixtures, '../expected/extra-deps'));
+    });
   });
 
   it('entry', function* () {
