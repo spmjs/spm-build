@@ -1,0 +1,8 @@
+{
+  "name": "a",
+  "version": "0.1.0",
+  "spm": {
+    "uglify": 1,
+    "cssmin": 2
+  }
+}
