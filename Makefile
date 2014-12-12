@@ -7,4 +7,8 @@ coveralls: test
 debug:
 	node --harmony $(NODE_DEBUG) ./node_modules/.bin/_mocha -R spec -t 20000 --require should --require co-mocha
 
+jsfiles := $(shell find ./ -name '*.js' ! -path "*template/*.js" ! -path "*theme/*.js" ! -path "*utils/tar.js" ! -path "*node_modules/*" ! -path "*cases/*" ! -path "*data/*" ! -path "*scripts/*" ! -path "*coverage/*" ! -path "*test/*" ! -path "*tmp/*");
+lint:
+	@./node_modules/.bin/jshint ${jsfiles}
+
 .PHONY: test
