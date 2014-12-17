@@ -2,6 +2,10 @@
 
 ---
 
+## 1.0.1
+
+- fix glob patten parse problem of `**/*`, [spm#1073](https://github.com/spmjs/spm/issues/1073)
+
 ## 1.0.0
 
 1.x for spm3, 0.x for spm2.
