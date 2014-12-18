@@ -2,6 +2,10 @@
 
 ---
 
+## 1.0.2
+
+- user can use `--with-deps`, `-O`, `--zip`, `--force` in buildArgs
+
 ## 1.0.1
 
 - fix glob patten parse problem of `**/*`, [spm#1073](https://github.com/spmjs/spm/issues/1073)
