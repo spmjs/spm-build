@@ -24,7 +24,7 @@ describe('lib/index.js', function() {
     yield *build({
       cwd: join(fixtures, 'normal'),
       dest: dest,
-      isInstall: true
+      install: true
     });
     assert(dest, join(fixtures, '../expected/normal'));
   });
@@ -33,8 +33,8 @@ describe('lib/index.js', function() {
     yield *build({
       cwd: join(fixtures, 'normal'),
       dest: dest,
-      isWithDeps: true,
-      isInstall: false
+      withDeps: true,
+      install: false
     });
     assert(dest, join(fixtures, '../expected/normal-withDeps'));
   });
@@ -44,7 +44,7 @@ describe('lib/index.js', function() {
       cwd: join(fixtures, 'normal'),
       dest: dest,
       ignore: 'type',
-      isInstall: false
+      install: false
     });
     assert(dest, join(fixtures, '../expected/normal-ignore'));
   });
@@ -54,7 +54,7 @@ describe('lib/index.js', function() {
       cwd: join(fixtures, 'normal'),
       dest: dest,
       include: 'standalone',
-      isInstall: false
+      install: false
     });
     assert(dest, join(fixtures, '../expected/normal-standalone'));
   });
@@ -65,7 +65,7 @@ describe('lib/index.js', function() {
       dest: dest,
       ignore: 'type',
       include: 'standalone',
-      isInstall: false
+      install: false
     });
     assert(dest, join(fixtures, '../expected/normal-standalone-ignore'));
   });
@@ -75,7 +75,7 @@ describe('lib/index.js', function() {
       cwd: join(fixtures, 'normal'),
       dest: dest,
       include: 'umd',
-      isInstall: false
+      install: false
     });
     assert(dest, join(fixtures, '../expected/normal-umd'));
   });
@@ -85,7 +85,7 @@ describe('lib/index.js', function() {
       cwd: join(fixtures, 'normal'),
       dest: dest,
       idleading: '',
-      isInstall: false
+      install: false
     });
     assert(dest, join(fixtures, '../expected/normal-empty-idleading'));
   });
@@ -95,7 +95,7 @@ describe('lib/index.js', function() {
       cwd: join(fixtures, 'nodeps-ignore'),
       dest: dest,
       ignore: 'jquery',
-      isInstall: false
+      install: false
     });
     assert(dest, join(fixtures, '../expected/nodeps-ignore'));
   });
@@ -105,7 +105,7 @@ describe('lib/index.js', function() {
     yield *build({
       cwd: join(fixtures, 'multiple-versions'),
       dest: dest,
-      isInstall: false
+      install: false
     });
     assert(dest, join(fixtures, '../expected/multiple-versions'));
     logWarn.callCount.should.be.equal(1);
@@ -115,7 +115,7 @@ describe('lib/index.js', function() {
     yield *build({
       cwd: join(fixtures, 'css-package'),
       dest: dest,
-      isInstall: false
+      install: false
     });
     assert(dest, join(fixtures, '../expected/css-package'));
   });
@@ -124,7 +124,7 @@ describe('lib/index.js', function() {
     yield *build({
       cwd: join(fixtures, 'package-file'),
       dest: dest,
-      isInstall: false
+      install: false
     });
     assert(dest, join(fixtures, '../expected/package-file'));
   });
@@ -139,7 +139,7 @@ describe('lib/index.js', function() {
       yield *build({
         cwd: join(fixtures, 'extra-deps'),
         dest: dest,
-        isInstall: false
+        install: false
       });
       assert(dest, join(fixtures, '../expected/extra-deps'));
     });
@@ -149,7 +149,7 @@ describe('lib/index.js', function() {
     yield *build({
       cwd: join(fixtures, 'entry'),
       dest: dest,
-      isInstall: false,
+      install: false,
       entry: ['a.js']
     });
     assert(dest, join(fixtures, '../expected/entry'));
@@ -165,7 +165,7 @@ describe('lib/index.js', function() {
       yield *build({
         cwd: join(fixtures, 'entry-without-pkg'),
         dest: dest,
-        isInstall: false,
+        install: false,
         entry: ['a.js']
       });
       assert(dest, join(fixtures, '../expected/entry-without-pkg'));
@@ -177,7 +177,7 @@ describe('lib/index.js', function() {
     yield *build({
       cwd: join(fixtures, 'copy-img'),
       dest: dest,
-      isInstall: false
+      install: false
     });
     assert(dest, join(fixtures, '../expected/copy-img'));
   });
@@ -190,8 +190,8 @@ describe('lib/index.js', function() {
     yield *build({
       cwd: join(fixtures, 'normal'),
       dest: dest,
-      isForce: true,
-      isInstall: false
+      force: true,
+      install: false
     });
 
     fs.existsSync(fakeFile).should.be.false;
