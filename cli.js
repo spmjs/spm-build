@@ -57,9 +57,9 @@ var args = {
   idleading: program.idleading,
   registry: program.registry,
 
+  withDeps: program.withDeps,
   isZip: program.zip,
   isForce: program.force,
-  isWithDeps: program.withDeps,
   isInstall: program.install,
 
   entry: entry
