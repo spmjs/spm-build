@@ -2,9 +2,13 @@
 
 ---
 
+## 1.0.3
+
+- can replace package name to global variable, format `name1:global1,name2,global2`
+
 ## 1.0.2
 
-- user can use `--with-deps`, `-O`, `--zip`, `--force` in buildArgs
+- can use `--with-deps`, `-O`, `--zip`, `--force` in buildArgs
 
 ## 1.0.1
 
