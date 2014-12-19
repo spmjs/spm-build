@@ -15,6 +15,7 @@ program
   .option('-I, --input-directory <dir>', 'input directory, default: current working directory')
   .option('-O, --output-directory <dir>', 'output directory, default: dist')
   .option('--include <include>', 'determine which files will be included, optional: self, relative, all, standalone, umd')
+  .option('--global <include>', 'replace package name to global variable, format name1:global1,name2,global2')
   .option('--ignore <ignore>', 'determine which id will not be transported')
   .option('--skip <skip>', 'determine which id will not be parsed when analyse')
   .option('-f, --force', 'force to clean dest directory first')
