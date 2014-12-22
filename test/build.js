@@ -90,6 +90,16 @@ describe('lib/index.js', function() {
     assert(dest, join(fixtures, '../expected/normal-empty-idleading'));
   });
 
+  it('normal global', function* () {
+    yield *build({
+      cwd: join(fixtures, 'normal'),
+      dest: dest,
+      global: 'type: Type',
+      install: false
+    });
+    assert(dest, join(fixtures, '../expected/normal-global'));
+  });
+
   it('nodeps ignore', function* () {
     yield *build({
       cwd: join(fixtures, 'nodeps-ignore'),

@@ -54,6 +54,7 @@ var args = {
 
   include: program.include,
   ignore: program.ignore,
+  global: program.global,
   skip: program.skip,
   idleading: program.idleading,
   registry: program.registry,
