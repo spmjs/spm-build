@@ -2,6 +2,10 @@
 
 ---
 
+## 1.0.4
+
+- fix global
+
 ## 1.0.3
 
 - can replace package name to global variable, format `name1:global1,name2,global2`
