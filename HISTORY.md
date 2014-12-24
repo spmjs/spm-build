@@ -2,6 +2,10 @@
 
 ---
 
+## 1.0.5
+
+- fix(build) do install before build
+
 ## 1.0.4
 
 - fix global
