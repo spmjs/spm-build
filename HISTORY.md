@@ -2,6 +2,10 @@
 
 ---
 
+## 1.0.7
+
+- fix(getArgs) read registry from package.json first
+
 ## 1.0.6
 
 - fix(getArgs) read registry from cli
