@@ -57,7 +57,7 @@ var args = {
   global: program.global,
   skip: program.skip,
   idleading: program.idleading,
-  registry: program.registry,
+  registry: program.registry || pkg.spm.registry,
 
   withDeps: program.withDeps,
   zip: program.zip,
