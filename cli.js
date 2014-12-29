@@ -46,6 +46,7 @@ if (entry.length) {
 }
 
 var begin = Date.now();
+console.log();
 log.info('start', info);
 
 var args = {
@@ -69,6 +70,7 @@ var args = {
 
 co(build(args)).then(function() {
   log.info('finish', info + showDiff(begin));
+  console.log();
 }, function (err) {
   log.error(err.message);
   log.error(err.stack);
