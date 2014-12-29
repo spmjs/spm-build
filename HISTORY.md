@@ -2,6 +2,10 @@
 
 ---
 
+## 1.0.8
+
+- fix(getArgs) ignore parse error
+
 ## 1.0.7
 
 - fix(getArgs) read registry from package.json first
