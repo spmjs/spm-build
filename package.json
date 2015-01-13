@@ -33,7 +33,7 @@
     "co-mocha": "~1.0.0",
     "coveralls": "2",
     "istanbul-harmony": "0",
-    "jshint": "~2.5.10",
+    "jshint": "~2.5.11",
     "mocha": "1",
     "should": "3",
     "sinon": "~1.12.1"

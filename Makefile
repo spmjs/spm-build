@@ -1,14 +1,14 @@
-test:
+test: jslint
 	node --harmony ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- -R spec -t 20000 --require should --require co-mocha --inline-diffs
 
 coveralls: test
 	cat ./coverage/lcov.info | ./node_modules/.bin/coveralls
 
 debug:
-	node --harmony $(NODE_DEBUG) ./node_modules/.bin/_mocha -R spec -t 20000 --require should --require co-mocha
+	node --harmony $(NODE_DEBUG) ./node_modules/.bin/_mocha -R spec -t 20000 --require should --require co-mocha --inline-diffs
 
 jsfiles := $(shell find ./ -name '*.js' ! -path "*template/*.js" ! -path "*theme/*.js" ! -path "*utils/tar.js" ! -path "*node_modules/*" ! -path "*cases/*" ! -path "*data/*" ! -path "*scripts/*" ! -path "*coverage/*" ! -path "*test/*" ! -path "*tmp/*");
-lint:
+jslint:
 	@./node_modules/.bin/jshint ${jsfiles}
 
 .PHONY: test
