@@ -6,9 +6,9 @@
   "dependencies": {
     "ali.gnode": "~0.1.1",
     "cdeps": "~0.1.0",
-    "co": "~4.0.1",
     "colorful": "~2.1.0",
     "commander": "~2.5.0",
+    "debug": "~2.1.1",
     "extend": "~2.0.0",
     "father": "~0.10.0",
     "flatten": "0.0.1",
@@ -26,7 +26,10 @@
     "spm-client": "~0.2.7",
     "spm-log": "~0.1.1",
     "spmrc": "~1.2.0",
+    "step.js": "~2.0.5",
+    "thunkify": "~2.1.2",
     "uniq": "~1.0.1",
+    "unyield": "0.0.1",
     "vinyl-fs": "~0.3.13"
   },
   "devDependencies": {

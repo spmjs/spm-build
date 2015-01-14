@@ -6,8 +6,18 @@ var rimraf = require('rimraf');
 var join = require('path').join;
 var sinon = require('sinon');
 var log = require('spm-log');
+var thunkify = require('thunkify');
 
-var build = require('../lib/build');
+var Build = require('../lib/build');
+
+var build = thunkify(function(args, done) {
+  new Build(args)
+    .getArgs()
+    .installDeps()
+    .parsePkg()
+    .addCleanTask()
+    .run(done);
+});
 
 var fixtures = join(__dirname, 'fixtures');
 var dest = join(fixtures, 'tmp');
@@ -21,7 +31,7 @@ describe('lib/index.js', function() {
   });
 
   it('normal', function* () {
-    yield *build({
+    yield build({
       cwd: join(fixtures, 'normal'),
       dest: dest,
       install: true
@@ -30,7 +40,7 @@ describe('lib/index.js', function() {
   });
 
   it('normal withDeps', function* () {
-    yield *build({
+    yield build({
       cwd: join(fixtures, 'normal'),
       dest: dest,
       withDeps: true,
@@ -40,7 +50,7 @@ describe('lib/index.js', function() {
   });
 
   it('normal ignore', function* () {
-    yield *build({
+    yield build({
       cwd: join(fixtures, 'normal'),
       dest: dest,
       ignore: 'type',
@@ -50,7 +60,7 @@ describe('lib/index.js', function() {
   });
 
   it('normal standalone', function* () {
-    yield *build({
+    yield build({
       cwd: join(fixtures, 'normal'),
       dest: dest,
       include: 'standalone',
@@ -60,7 +70,7 @@ describe('lib/index.js', function() {
   });
 
   it('normal standalone ignore', function* () {
-    yield *build({
+    yield build({
       cwd: join(fixtures, 'normal'),
       dest: dest,
       ignore: 'type',
@@ -71,7 +81,7 @@ describe('lib/index.js', function() {
   });
 
   it('normal umd', function* () {
-    yield *build({
+    yield build({
       cwd: join(fixtures, 'normal'),
       dest: dest,
       include: 'umd',
@@ -81,7 +91,7 @@ describe('lib/index.js', function() {
   });
 
   it('normal empty idleading', function* () {
-    yield *build({
+    yield build({
       cwd: join(fixtures, 'normal'),
       dest: dest,
       idleading: '',
@@ -91,7 +101,7 @@ describe('lib/index.js', function() {
   });
 
   it('normal global', function* () {
-    yield *build({
+    yield build({
       cwd: join(fixtures, 'normal'),
       dest: dest,
       global: 'type: Type',
@@ -101,7 +111,7 @@ describe('lib/index.js', function() {
   });
 
   it('nodeps ignore', function* () {
-    yield *build({
+    yield build({
       cwd: join(fixtures, 'nodeps-ignore'),
       dest: dest,
       ignore: 'jquery',
@@ -112,7 +122,7 @@ describe('lib/index.js', function() {
 
   it('multiple versions', function* () {
     var logWarn = sinon.spy(log, 'warn');
-    yield *build({
+    yield build({
       cwd: join(fixtures, 'multiple-versions'),
       dest: dest,
       install: false
@@ -122,7 +132,7 @@ describe('lib/index.js', function() {
   });
 
   it('css package', function* () {
-    yield *build({
+    yield build({
       cwd: join(fixtures, 'css-package'),
       dest: dest,
       install: false
@@ -131,7 +141,7 @@ describe('lib/index.js', function() {
   });
 
   it('package file', function* () {
-    yield *build({
+    yield build({
       cwd: join(fixtures, 'package-file'),
       dest: dest,
       install: false
@@ -146,7 +156,7 @@ describe('lib/index.js', function() {
     });
 
     it('extra deps', function* () {
-      yield *build({
+      yield build({
         cwd: join(fixtures, 'extra-deps'),
         dest: dest,
         install: false
@@ -156,7 +166,7 @@ describe('lib/index.js', function() {
   });
 
   it('entry', function* () {
-    yield *build({
+    yield build({
       cwd: join(fixtures, 'entry'),
       dest: dest,
       install: false,
@@ -172,7 +182,7 @@ describe('lib/index.js', function() {
     });
 
     it('entry without pkg', function* () {
-      yield *build({
+      yield build({
         cwd: join(fixtures, 'entry-without-pkg'),
         dest: dest,
         install: false,
@@ -184,7 +194,7 @@ describe('lib/index.js', function() {
   });
 
   it('copy img', function* () {
-    yield *build({
+    yield build({
       cwd: join(fixtures, 'copy-img'),
       dest: dest,
       install: false
@@ -197,7 +207,7 @@ describe('lib/index.js', function() {
     fs.mkdirSync(dest);
     fs.writeFileSync(fakeFile);
 
-    yield *build({
+    yield build({
       cwd: join(fixtures, 'normal'),
       dest: dest,
       force: true,
