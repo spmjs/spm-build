@@ -36,7 +36,7 @@ Learn more on [package.json](http://docs.spmjs.org/en/package).
 
 Install spm-build with npm:
 
-    $ npm install spm-build -g
+    $ npm install spm-build@0.x -g
 
 
 **此插件适用于 [spm@2.x](https://github.com/spmjs/spm/tree/2.x) 版本，spm3 已自带构建，无须安装插件。**
