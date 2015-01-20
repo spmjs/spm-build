@@ -4,12 +4,11 @@
 
 require('colorful').colorful();
 var program = require('commander');
-var co = require('co');
 var log = require('spm-log');
 var join = require('path').join;
 var exists = require('fs').existsSync;
 var readFile = require('fs').readFileSync;
-var build = require('./').build;
+var Build = require('./').Build;
 
 program
   .option('-I, --input-directory <dir>', 'input directory, default: current working directory')
@@ -68,14 +67,21 @@ var args = {
   entry: entry
 };
 
-co(build(args)).then(function() {
-  log.info('finish', info + showDiff(begin));
-  console.log();
-}, function (err) {
-  log.error(err.message);
-  log.error(err.stack);
-  process.exit(1);
-});
+new Build(args)
+  .getArgs()
+  .installDeps()
+  .parsePkg()
+  .addCleanTask()
+  .run(function(err) {
+    if (err) {
+      log.error(err.message);
+      log.error(err.stack);
+      process.exit(1);
+    }
+
+    log.info('finish', info + showDiff(begin));
+    console.log();
+  });
 
 function showDiff(time) {
   var diff = Date.now() - time;
