@@ -2,6 +2,15 @@
 
 ---
 
+## 1.1.0 (in dev)
+
+- support 6to5
+- support autoprefixer
+- exports inner fns, more expandable, [#69](https://github.com/spmjs/spm-build/pull/69)
+- deps: ali.gnode -> gnode
+- deps: upgrade mixing to 0.2
+- deps: gulp-cssmin -> gulp-minify-css
+
 ## 1.0.8
 
 - fix(getArgs) ignore parse error
