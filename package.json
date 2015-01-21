@@ -4,7 +4,7 @@
   "description": "build tool for spm3.",
   "main": "index",
   "dependencies": {
-    "ali.gnode": "~0.1.1",
+    "gnode": "~0.1.1",
     "cdeps": "~0.1.0",
     "colorful": "~2.1.0",
     "commander": "~2.5.0",
