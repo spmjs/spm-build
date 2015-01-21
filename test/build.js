@@ -158,6 +158,15 @@ describe('lib/index.js', function() {
     assert(dest, join(fixtures, '../expected/autoprefixer'));
   });
 
+  it('to5', function* () {
+    yield build({
+      cwd: join(fixtures, 'to5'),
+      dest: dest,
+      install: false
+    });
+    assert(dest, join(fixtures, '../expected/to5'));
+  });
+
   describe('extra deps', function() {
     afterEach(function() {
       fs.writeFileSync(join(fixtures, 'extra-deps/package.json'),

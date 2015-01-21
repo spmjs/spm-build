@@ -1,0 +1,1 @@
+define("a/0.1.0/a",[],function(){"use strict";{var a=[1,2,3];a[0],a[2]}});

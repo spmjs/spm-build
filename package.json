@@ -13,6 +13,7 @@
     "flatten": "0.0.1",
     "glob": "~4.3.1",
     "gnode": "~0.1.1",
+    "gulp-6to5": "~2.0.2",
     "gulp-autoprefixer": "~2.1.0",
     "gulp-if": "~1.2.5",
     "gulp-minify-css": "~0.3.12",
