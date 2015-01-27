@@ -13,7 +13,10 @@ var Build = require('./').Build;
 program
   .option('-I, --input-directory <dir>', 'input directory, default: current working directory')
   .option('-O, --output-directory <dir>', 'output directory, default: dist')
-  .option('--include <include>', 'determine which files will be included, optional: self, relative, all, standalone, umd')
+  .option('--include <include>', 'Deprecated. determine which files will be included, optional: self, relative, all, standalone, umd')
+  .option('--sea <sea>', 'file include mode with seajs, optional: self, relative, all')
+  .option('--standalone', 'standalone version')
+  .option('--umd [umd]', 'UMD-wrapped version with given global name')
   .option('--global <global>', 'replace package name to global variable, format jquery:$,underscore:_')
   .option('--ignore <ignore>', 'determine which id will not be transported')
   .option('--skip <skip>', 'determine which id will not be parsed when analyse')
@@ -53,6 +56,9 @@ var args = {
   cwd: cwd,
 
   include: program.include,
+  sea: program.sea,
+  standalone: program.standalone,
+  umd: program.umd,
   ignore: program.ignore,
   global: program.global,
   skip: program.skip,

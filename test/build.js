@@ -39,6 +39,26 @@ describe('lib/index.js', function() {
     assert(dest, join(fixtures, '../expected/normal'));
   });
 
+  it('normal with `--sea`', function* () {
+    yield build({
+      cwd: join(fixtures, 'normal'),
+      dest: dest,
+      install: true,
+      sea: 'relative'
+    });
+    assert(dest, join(fixtures, '../expected/normal'));
+  });
+
+  it('normal all', function* () {
+    yield build({
+      cwd: join(fixtures, 'normal'),
+      dest: dest,
+      install: true,
+      sea: 'all'
+    });
+    assert(dest, join(fixtures, '../expected/normal-all'));
+  });
+
   it('normal withDeps', function* () {
     yield build({
       cwd: join(fixtures, 'normal'),
@@ -64,6 +84,16 @@ describe('lib/index.js', function() {
       cwd: join(fixtures, 'normal'),
       dest: dest,
       include: 'standalone',
+      install: false
+    });
+    assert(dest, join(fixtures, '../expected/normal-standalone'));
+  });
+
+  it('normal standalone with `--standalone`', function* () {
+    yield build({
+      cwd: join(fixtures, 'normal'),
+      dest: dest,
+      standalone: true,
       install: false
     });
     assert(dest, join(fixtures, '../expected/normal-standalone'));

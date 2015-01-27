@@ -4,6 +4,9 @@
 
 ## 1.1.0 (in dev)
 
+- improve include, [spmjs/spm#1086](https://github.com/spmjs/spm/issues/1086)
+  - deprecated `--include`
+  - add `--standalone`, `--umd [umd]`, `--sea <sea>`
 - support 6to5
 - support autoprefixer
 - exports inner fns, more expandable, [#69](https://github.com/spmjs/spm-build/pull/69)

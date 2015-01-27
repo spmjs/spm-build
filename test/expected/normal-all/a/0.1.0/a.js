@@ -1,0 +1,1 @@
+define("a/0.1.0/a",[],function(e){e("type/0.1.0/index"),console.log("a@0.1.0")}),define("type/0.1.0/index",[],function(){console.log("type")});
