@@ -2,7 +2,7 @@
 
 ---
 
-## 1.1.0 (in dev)
+## 1.1.0
 
 - improve include, [spmjs/spm#1086](https://github.com/spmjs/spm/issues/1086)
   - deprecated `--include`
