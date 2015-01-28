@@ -2,6 +2,10 @@
 
 ---
 
+## 1.1.1
+
+- fix require error, ali.gnode -> gnode
+
 ## 1.1.0
 
 - improve include, [spmjs/spm#1086](https://github.com/spmjs/spm/issues/1086)
