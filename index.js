@@ -1,4 +1,4 @@
 'use strict';
 
-require('ali.gnode');
+require('gnode');
 module.exports = require('./lib');
