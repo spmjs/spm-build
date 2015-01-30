@@ -265,6 +265,20 @@ describe('lib/index.js', function() {
     fs.existsSync(fakeFile).should.be.false;
   });
 
+  describe('scripts', function() {
+
+    afterEach(function() {
+      rimraf.sync(join(fixtures, 'scripts/index.js'));
+    });
+
+    it('with scripts', function* () {
+      process.chdir(join(fixtures, 'scripts'));
+      yield require('exeq')(join(__dirname, '../cli.js'));
+      fs.readFileSync(join(fixtures, 'scripts', 'index.js'), 'utf-8').should.be.equal('1\n2\n3\n');
+    });
+
+  });
+
 });
 
 function assert(actual, expect) {

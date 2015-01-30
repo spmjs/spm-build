@@ -1,0 +1,9 @@
+{
+  "spm": {
+    "scripts": {
+      "prebuild": "echo 1 >> index.js",
+      "build": "echo 2 >> index.js",
+      "postbuild": "echo 3 >> index.js"
+    }
+  }
+}

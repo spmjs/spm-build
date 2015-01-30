@@ -2,13 +2,16 @@
 
 'use strict';
 
+require('gnode');
+
 require('colorful').colorful();
 var program = require('commander');
 var log = require('spm-log');
 var join = require('path').join;
 var exists = require('fs').existsSync;
 var readFile = require('fs').readFileSync;
-var Build = require('./').Build;
+var Build = require('./lib').Build;
+var hook = require('scripts-hook');
 
 program
   .option('-I, --input-directory <dir>', 'input directory, default: current working directory')
@@ -44,7 +47,8 @@ if (entry.length) {
   log.error('miss', 'package.json or "spm" key');
   process.exit(2);
 } else {
-  info = ('build ' + pkg.name + '@' + pkg.version).to.magenta.color;
+  var pkgId = pkg.name && pkg.version && (pkg.name + '@' + pkg.version) || '';
+  info = ('build ' + pkgId).to.magenta.color;
 }
 
 var begin = Date.now();
@@ -73,21 +77,26 @@ var args = {
   entry: entry
 };
 
-new Build(args)
-  .getArgs()
-  .installDeps()
-  .parsePkg()
-  .addCleanTask()
-  .run(function(err) {
-    if (err) {
-      log.error(err.message);
-      log.error(err.stack);
-      process.exit(1);
-    }
+var scripts = pkg && pkg.spm && pkg.spm.scripts || {};
+hook(scripts, 'build', function(done) {
+  new Build(args)
+    .getArgs()
+    .installDeps()
+    .parsePkg()
+    .addCleanTask()
+    .run(function(err) {
+      if (err) {
+        log.error(err.message);
+        log.error(err.stack);
+        process.exit(1);
+      }
 
-    log.info('finish', info + showDiff(begin));
-    console.log();
-  });
+      done();
+    });
+}).then(function() {
+  log.info('finish', info + showDiff(begin));
+  console.log();
+}, function() {});
 
 function showDiff(time) {
   var diff = Date.now() - time;
