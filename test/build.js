@@ -239,6 +239,18 @@ describe('lib/index.js', function() {
       assert(dest, join(fixtures, '../expected/entry-without-pkg'));
     });
 
+    it('output file', function*() {
+      yield build({
+        cwd: join(fixtures, 'entry-without-pkg'),
+        dest: dest,
+        install: false,
+        entry: ['a.js'],
+        outputFile: 'build.js'
+      });
+      fs.readFileSync(join(fixtures, 'entry-without-pkg/build.js'), 'utf-8').should.be.equal('define("/a",[],function(){console.log("a.js")});');
+      rimraf.sync(join(fixtures, 'entry-without-pkg/build.js'));
+    });
+
   });
 
   it('copy img', function* () {

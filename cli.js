@@ -2,9 +2,9 @@
 
 'use strict';
 
+require('colorful').colorful();
 require('gnode');
 
-require('colorful').colorful();
 var program = require('commander');
 var log = require('spm-log');
 var join = require('path').join;
@@ -16,15 +16,16 @@ var hook = require('scripts-hook');
 program
   .option('-I, --input-directory <dir>', 'input directory, default: current working directory')
   .option('-O, --output-directory <dir>', 'output directory, default: dist')
-  .option('--include <include>', 'Deprecated. determine which files will be included, optional: self, relative, all, standalone, umd')
+  .option('-o, --output-file <file>', 'output file')
+  .option('-f, --force', 'force to clean dest directory first')
+  .option('-r, --registry <url>', 'registry url of yuan server')
+  .option('-s, --standalone', 'standalone version')
   .option('--sea <sea>', 'file include mode with seajs, optional: self, relative, all')
-  .option('--standalone', 'standalone version')
   .option('--umd [umd]', 'UMD-wrapped version with given global name')
   .option('--global <global>', 'replace package name to global variable, format jquery:$,underscore:_')
   .option('--ignore <ignore>', 'determine which id will not be transported')
   .option('--skip <skip>', 'determine which id will not be parsed when analyse')
-  .option('-f, --force', 'force to clean dest directory first')
-  .option('-r, --registry <url>', 'registry url of yuan server')
+  .option('--include <include>', 'Deprecated. use `--sea`, `--standalone` and `--umd` instead')
   .option('--idleading [idleading]', 'prefix of module name, default: {{name}}/{{version}}')
   .option('--with-deps', 'build package in dependencies')
   .option('--zip', 'archive by zip')
@@ -37,15 +38,17 @@ log.config(program);
 
 var cwd = join(process.cwd(), program.inputDirectory || '');
 var file = join(cwd, 'package.json');
-var pkg = exists(file) && JSON.parse(readFile(file, 'utf-8'));
+var pkg = exists(file) && JSON.parse(readFile(file, 'utf-8')) || {};
 var entry = program.args;
 
 var info = '';
 if (entry.length) {
   info = 'build ' + entry.join(',');
 } else if (!pkg || !pkg.spm) {
+  console.log();
   log.error('miss', 'package.json or "spm" key');
-  process.exit(2);
+  console.log();
+  process.exit(1);
 } else {
   var pkgId = pkg.name && pkg.version && (pkg.name + '@' + pkg.version) || '';
   info = ('build ' + pkgId).to.magenta.color;
@@ -58,6 +61,7 @@ log.info('start', info);
 var args = {
   dest: program.outputDirectory,
   cwd: cwd,
+  outputFile: program.outputFile,
 
   include: program.include,
   sea: program.sea,
@@ -74,6 +78,7 @@ var args = {
   force: program.force,
   install: program.install,
 
+  originPkg: pkg,
   entry: entry
 };
 
