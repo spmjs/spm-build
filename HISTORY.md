@@ -2,6 +2,12 @@
 
 ---
 
+## 1.2.0 (in dev)
+
+- add `-o, --output-file` option to output single file
+- add scripts support
+- don't add name and version in generated package.json
+
 ## 1.1.1
 
 - fix require error, ali.gnode -> gnode
