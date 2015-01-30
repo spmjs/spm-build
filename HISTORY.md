@@ -4,7 +4,7 @@
 
 ## 1.2.0 (in dev)
 
-- add `-o, --output-file` option to output single file
+- add `-o, --output-file` option to output single file, [spmjs/spm#1188](https://github.com/spmjs/spm/issues/1188)
 - add scripts support
 - don't add name and version in generated package.json
 
