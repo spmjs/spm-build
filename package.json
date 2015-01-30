@@ -9,6 +9,7 @@
     "colorful": "~2.1.0",
     "commander": "~2.5.0",
     "debug": "~2.1.1",
+    "exeq": "~2.0.2",
     "extend": "~2.0.0",
     "father": "~0.10.0",
     "flatten": "0.0.1",

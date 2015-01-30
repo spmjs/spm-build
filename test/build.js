@@ -273,7 +273,7 @@ describe('lib/index.js', function() {
 
     it('with scripts', function* () {
       process.chdir(join(fixtures, 'scripts'));
-      yield require('exeq')(join(__dirname, '../cli.js'));
+      yield require('exeq')('node --harmony ' + join(__dirname, '../cli.js'));
       fs.readFileSync(join(fixtures, 'scripts', 'index.js'), 'utf-8').should.be.equal('1\n2\n3\n');
     });
 
