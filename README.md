@@ -25,11 +25,16 @@ $ spm-build [option] [file]
 
 - `-I, --input-directory <dir>`, input directory, default: current working directory
 - `-O, --output-directory <dir>`, output directory, default: dist
-- `--include <include>`, determine which files will be included, optional: self, relative, all, standalone, umd
-- `--ignore <ignore>`, determine which id will not be transported
-- `--skip <skip>`, determine which id will not be parsed when analyse
+- `-o, --output-file <file>`, output file
 - `-f, --force`, force to clean dest directory first
 - `-r, --registry <url>`, registry url of yuan server
+- `-s, --standalone`, standalone version
+- `--sea <sea>`, file include mode with seajs, optional: self, relative, all
+- `--umd [umd]`, UMD-wrapped version with given global name
+- `--global <global>`, replace package name to global variable, format jquery:$,underscore:_
+- `--ignore <ignore>`, determine which id will not be transported
+- `--skip <skip>`, determine which id will not be parsed when analyse
+- `--include <include>`, Deprecated. use `--sea`, `--standalone` and `--umd` instead
 - `--idleading [idleading]`, prefix of module name, default: {{name}}/{{version}}
 - `--with-deps`, build package in dependencies
 - `--zip`, archive by zip
@@ -39,4 +44,4 @@ $ spm-build [option] [file]
 
 ## LISENCE
 
-Copyright (c) 2014 chencheng. Licensed under the MIT license.
+Copyright (c) 2014-2114 chencheng. Licensed under the MIT license.
