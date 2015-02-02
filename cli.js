@@ -4,6 +4,10 @@
 
 require('colorful').colorful();
 require('gnode');
+require('6to5/register')({
+  ignore: '',
+  only: /scripts-hook\/_index/
+});
 
 var program = require('commander');
 var log = require('spm-log');

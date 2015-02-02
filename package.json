@@ -4,6 +4,7 @@
   "description": "build tool for spm3.",
   "main": "lib/index",
   "dependencies": {
+    "6to5": "~3.3.3",
     "cdeps": "~0.1.0",
     "co": "~4.1.0",
     "colorful": "~2.1.0",
