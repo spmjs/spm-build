@@ -2,6 +2,10 @@
 
 ---
 
+## 1.2.2
+
+Use 6to5 to generate scripts-hook
+
 ## 1.2.1
 
 Deps: upgrade father to 0.11
