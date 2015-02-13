@@ -2,6 +2,10 @@
 
 ---
 
+## 1.2.3
+
+Remove `--harmony` from cli's env declaration.
+
 ## 1.2.2
 
 Use 6to5 to generate scripts-hook
