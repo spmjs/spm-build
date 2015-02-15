@@ -67,6 +67,10 @@ If you are using `spm-build` to run the grunt task, you can also load these task
 
 ## Changelog
 
+**Feb 15th, 2015** `0.4.1`
+
+filter the files that not matched by spm.output
+
 **Sep 9th, 2014** `0.4.0`
 
 Remove running scripts in package.json
