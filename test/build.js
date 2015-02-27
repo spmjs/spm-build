@@ -262,6 +262,15 @@ describe('lib/index.js', function() {
 
   });
 
+  it('hash', function* () {
+    yield build({
+      cwd: join(fixtures, 'hash'),
+      dest: dest,
+      install: false
+    });
+    assert(dest, join(fixtures, '../expected/hash'));
+  });
+
   it('copy img', function* () {
     yield build({
       cwd: join(fixtures, 'copy-img'),

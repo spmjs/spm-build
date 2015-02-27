@@ -5,6 +5,8 @@
 ## 1.2.4 (in dev)
 
 - deps: upgrade father to 0.13.x
+- deps: upgrade gulp-spm to 0.11.x
+- support rename with hash suffix
 
 ## 1.2.3
 

@@ -1,0 +1,7 @@
+{
+  "name": "a",
+  "spm": {
+    "output": ["a.js"],
+    "hash": true
+  }
+}
