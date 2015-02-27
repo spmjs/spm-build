@@ -2,6 +2,10 @@
 
 ---
 
+## 1.2.4 (in dev)
+
+- deps: upgrade father to 0.13.x
+
 ## 1.2.3
 
 Remove `--harmony` from cli's env declaration.
