@@ -170,6 +170,15 @@ describe('lib/index.js', function() {
     assert(dest, join(fixtures, '../expected/css-package'));
   });
 
+  it('css resources', function* () {
+    yield build({
+      cwd: join(fixtures, 'css-resources'),
+      dest: dest,
+      install: false
+    });
+    assert(dest, join(fixtures, '../expected/css-resources'));
+  });
+
   it('package file', function* () {
     yield build({
       cwd: join(fixtures, 'package-file'),
