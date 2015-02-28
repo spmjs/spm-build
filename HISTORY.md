@@ -2,11 +2,14 @@
 
 ---
 
-## 1.2.4 (in dev)
+## 1.3.0
 
+- css resources:
+  - fix path problem if entry file is not in root directory
+  - dont handle css resource if entry file is js file
+- support rename with hash suffix
 - deps: upgrade father to 0.13.x
 - deps: upgrade gulp-spm to 0.11.x
-- support rename with hash suffix
 
 ## 1.2.3
 
