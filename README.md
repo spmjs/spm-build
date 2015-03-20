@@ -1,4 +1,4 @@
-# spm-build
+# spm-build (Deprecated, please use [spm-sea](https://github.com/spmjs/spm-sea) for cmd and [spm-webpack](https://github.com/spmjs/spm-webpack) for standalone)
 
 [![NPM version](https://img.shields.io/npm/v/spm-build.svg?style=flat)](https://npmjs.org/package/spm-build)
 [![Build Status](https://img.shields.io/travis/spmjs/spm-build.svg?style=flat)](https://travis-ci.org/spmjs/spm-build)
