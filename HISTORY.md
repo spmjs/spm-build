@@ -2,6 +2,10 @@
 
 ---
 
+## 1.3.1
+
+- deps: upgrade gulp-spm to 0.12
+
 ## 1.3.0
 
 - css resources:
