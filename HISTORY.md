@@ -2,6 +2,10 @@
 
 ---
 
+## 1.3.2
+
+- deps: downgrade gulp-spm to 0.11
+
 ## 1.3.1
 
 - deps: upgrade gulp-spm to 0.12
