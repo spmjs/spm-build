@@ -1,6 +1,6 @@
 {
   "name": "spm-build",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "build tool for spm3.",
   "main": "lib/index",
   "dependencies": {
